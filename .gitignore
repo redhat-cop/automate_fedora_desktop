@@ -1,0 +1,3 @@
+# vim temporary and backup files
+.*.swp
+*~
