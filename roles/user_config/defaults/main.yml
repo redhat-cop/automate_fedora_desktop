@@ -1,0 +1,13 @@
+---
+# defaults file for user_config
+# a list of config files and code blocks you'd like to have
+user_config_files: []
+#user_config_files:
+#- name: bashrc
+#  block: |
+#      set -o vi
+#  validate: bash -nr %s
+#- name: vimrc
+#  block: |
+#      autocmd FileType yaml setlocal expandtab tabstop=2 shiftwidth=2 autoindent
+#  marker: '" {mark} ANSIBLE MANAGED BLOCK'

@@ -1,0 +1,9 @@
+---
+# defaults file for system_power
+
+# set to false if you don't want powertop to tune your system
+power_autotune: true
+
+# set to true to calibrate your system while tuning it, it takes time and
+# your screen will flicker
+power_calibrate: false

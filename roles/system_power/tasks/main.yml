@@ -1,0 +1,18 @@
+---
+# tasks file for system_power
+
+- name: install power management software
+  package:
+    name:
+    - tlp
+    - tlp-rdw
+    - powertop
+    state: present
+- name: power tune your system and optionally calibrate (screen might flicker)
+  command: powertop {% if power_calibrate %}--calibrate{% endif %} --auto-tune
+  when: power_autotune
+- name: enable and start tlp service
+  service:
+    name: tlp
+    state: started
+    enabled: true

@@ -1,0 +1,15 @@
+---
+# tasks file for user_config
+- name: adapt the user's config files
+  blockinfile:
+    backup: false
+    block: "{{ item.block }}"
+    create: true
+    insertafter: EOF
+    path: "~/.{{ item.name }}"
+    marker: "{{ item.marker | default(omit) }}"
+    state: present
+    validate: "{{ item.validate | default(omit) }}"
+  loop: "{{ user_config_files }}"
+  loop_control:
+    label: "{{ item.name }}"

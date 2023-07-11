@@ -1,0 +1,6 @@
+---
+# vars file for system_software
+
+software_fedora_mandatory:
+- python3-libselinux    # cups
+- redhat-lsb

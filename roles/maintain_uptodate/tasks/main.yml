@@ -1,0 +1,55 @@
+---
+# tasks file for maintain_uptodate
+- name: upgrade all packages from current release
+  dnf:
+    name: '*'
+    state: latest
+    update_cache: true
+  become: true
+- name: upgrade Fedora if requested by setting fedora_target_release
+  block:
+  - name: install DNF system upgrade plugin package
+    dnf:
+      name: 'dnf-plugin-system-upgrade'
+      state: present
+  - name: remove upgrade critical packages if applicable
+    dnf:
+      name: "{{ fedora_upgrade_critical_packages[fedora_target_release | int] }}"
+      state: absent
+    when: fedora_target_release | int in fedora_upgrade_critical_packages
+  - name: download all necessary for Fedora {{ fedora_target_release }}
+    command:
+      cmd: dnf system-upgrade download --releasever={{ fedora_target_release }} --assumeyes
+      warn: false
+    # Error: Need a --releasever greater than the current system version. -> TODO check!
+  - name: reboot into the upgrade process in fire & forget mode
+    command:
+      cmd: dnf system-upgrade reboot --assumeyes
+      warn: false
+    async: 60
+    poll: 0  # fire & forget mode
+  - name: wait for the host to shutdown
+    wait_for:
+      host: "{{ hostvars[inventory_hostname]['ansible_host'] | default(inventory_hostname) }}"
+      port: "{{ hostvars[inventory_hostname]['ansible_port'] | default(22) }}"
+      state: stopped
+      timeout: 120
+      sleep: 10
+    delegate_to: localhost
+    become: false
+  - name: wait for host to upgrade and come back
+    wait_for_connection:
+      delay: 600  # more than necessary but gives time for a further reboot in-between
+      timeout: 3600  # an upgrade can take up to an hour (?)
+      sleep: 60
+    become: false
+  when:
+  - fedora_target_release is defined
+  - ansible_distribution_major_version is defined
+  - (ansible_distribution_major_version | int) < (fedora_target_release | int)
+  become: true
+- name: gather facts to check the (new) current version
+  setup:
+- name: output the gathered OS version
+  debug:
+    msg: "OS Version is {{ ansible_distribution }} {{ ansible_distribution_version }}"

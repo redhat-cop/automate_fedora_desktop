@@ -1,0 +1,10 @@
+---
+# defaults file for system_wlan
+
+# a list of WLANs with name and key (only WPA_PSK supported for now)
+wlans_list: []
+#- name: MySsid
+#  key: whateversecret_use_a_vault
+#  routes:
+#  - "192.168.1.0/24 via 192.168.0.254"
+# Static routes are described at https://docs.fedoraproject.org/en-US/Fedora/25/html/Networking_Guide/sec-Configuring_Static_Routes_in_ifcfg_files.html

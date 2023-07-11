@@ -1,0 +1,21 @@
+---
+# tasks file for kickstart_create
+- name: create temporary kickstart directory
+  file:
+    state: directory
+    path: "{{ kickstart_dir }}"
+
+- name: create full path to kickstart file
+  set_fact:
+    kickstart_path: "{{ kickstart_dir }}/{{ laptop_hostname | default(inventory_hostname) }}_{{ kickstart_file }}"
+
+- name: create kickstart from template and inventory variables
+  template:
+    dest: "{{ kickstart_path }}"
+    src: fedansy-ks.cfg.j2
+    validate: 'ksvalidator --version F{{ fedora_release }} %s'
+  delegate_to: localhost
+
+- name: output path to created kickstart file
+  debug:
+    msg: "Take the file '{{ kickstart_path }}' and copy it to a web-server"

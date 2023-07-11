@@ -1,0 +1,15 @@
+---
+
+- name: make sure user group '{{ vagrant_libvirt_group }}' exists
+  group:
+    name: vagrant
+    state: present
+    system: true
+
+- name: Add polkit rule to allow libvirt usage by {{ local_admin_group }} group
+  template:
+    src: templates/polkit-libvirt.rules.j2
+    dest: /etc/polkit-1/rules.d/80-vagrant-libvirt.rules
+    owner: root
+    group: root
+    mode: u=rw,go=r

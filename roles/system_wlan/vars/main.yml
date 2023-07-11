@@ -1,0 +1,4 @@
+---
+# vars file for system_wlan
+# where are the network configuration scripts and keys placed
+network_config_dir: /etc/sysconfig/network-scripts

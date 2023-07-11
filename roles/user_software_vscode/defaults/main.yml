@@ -1,0 +1,9 @@
+---
+# defaults file for user_software_vscode
+
+# make vscode present or absent
+software_vscode_state: present
+
+software_vscode_extensions: []
+# - redhat.ansible
+# - vscodevim.vim

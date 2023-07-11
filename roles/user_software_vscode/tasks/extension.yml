@@ -1,0 +1,18 @@
+---
+# tasks file for user_software_vscode
+# https://computingforgeeks.com/install-visual-studio-code-on-fedora/
+
+- name: extension | make sure plugin {{ item }} is {{ software_vscode_state }}
+  command: >
+    code
+    {% if software_vscode_state == 'present' %}--install-extension
+    {% elif software_vscode_state == 'absent' %}--uninstall-extension
+    {% endif %}
+    {{ item }}
+  register: __software_vscode_ext
+  changed_when:
+    - "'is already installed' not in __software_vscode_ext.stdout"
+    - "'is not installed' not in __software_vscode_ext.stderr"
+  failed_when:
+    - __software_vscode_ext.rc != 0
+    - "'is not installed' not in __software_vscode_ext.stderr"

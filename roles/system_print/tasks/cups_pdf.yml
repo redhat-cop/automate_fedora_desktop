@@ -1,0 +1,13 @@
+---
+- name: install cups-pdf package
+  package:
+    name: cups-pdf
+    state: present
+- name: configure cups-pdf
+  lineinfile:
+    path: /etc/cups/cups-pdf.conf
+    line: "{{ item }}"
+    regexp: "^{{ item | regex_replace(' .*',' ') }}.*"
+    insertafter: "^#{{ item | regex_replace(' .*',' ') }}.*"
+  loop: "{{ cups_pdf_config }}"
+

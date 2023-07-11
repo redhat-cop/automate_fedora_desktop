@@ -1,0 +1,8 @@
+---
+# tasks file for user_software_vscode
+# https://computingforgeeks.com/install-visual-studio-code-on-fedora/
+
+- name: include extension handling task file
+  include_tasks:
+    file: extension.yml
+  loop: "{{ software_vscode_extensions }}"

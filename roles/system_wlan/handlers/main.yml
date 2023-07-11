@@ -1,0 +1,5 @@
+---
+# handlers file for system_wlan
+- name: reload all connection files from disk
+  command: nmcli connection reload
+  listen: reload_connections

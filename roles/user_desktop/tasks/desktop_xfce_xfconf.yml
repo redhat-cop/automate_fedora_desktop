@@ -1,0 +1,14 @@
+---
+- name: check the current value of {{ xfce_conf.chan }}/{{ xfce_conf.prop }}
+  command: >
+    xfconf-query --channel {{ xfce_conf.chan }}
+    --property {{ xfce_conf.prop }}
+  register: xfconf_query
+  changed_when: false
+  check_mode: no
+- name: set {{ xfce_conf.chan }}/{{ xfce_conf.prop }} to {{ xfce_conf.value }}
+  command: >
+    xfconf-query --channel {{ xfce_conf.chan }}
+    --property {{ xfce_conf.prop }}
+    --set "{{ xfce_conf.value }}"
+  when: xfconf_query.stdout != xfce_conf.value

@@ -1,0 +1,104 @@
+
+#== Network and security ==
+
+# Network information
+network --bootproto=dhcp --device=link --activate --ipv6=auto
+network --hostname={{ laptop_hostname | default(inventory_hostname) }}
+# --essid= - The network ID for wireless networks.
+# --wpakey= - The WPA encryption key for wireless networks.
+# Firewall configuration
+firewall --enabled --service=ssh
+# System authorization information - Kerberos is added after provisioning
+# FIXME auth/authconfig is obsolete and I doubt that we still need to precise
+#auth --enableshadow --passalgo=sha512
+# SELinux configuration
+selinux --enforcing
+
+# Use 'text' install (also 'cmdline' would be possible)
+text
+# Run the Setup Agent on first boot (--disable, also --reconfig to reconfigure everything)
+firstboot --enable
+
+url --url="{{ fedora_download_url }}"
+
+#== Settings ==
+
+# X Window System configuration information
+xconfig  --startxonboot
+# System services
+services --enabled="chronyd,sshd"
+{% if keyboard_keymap is defined %}
+# Keyboard layouts
+keyboard --vckeymap='{{ keyboard_keymap }}' --xlayouts='{{ keyboard_xlayout }}'
+{% endif %}
+{% if system_language is defined %}
+# System language
+lang {{ system_language }}
+{% endif %}
+{% if system_timezone is defined %}
+# System timezone
+timezone {{ system_timezone }} --isUtc
+{% endif %}
+
+#== User passwords ==
+
+# Root password
+rootpw --iscrypted {{ root_crypted_password }}
+# Admin user (not the real end user!)
+user --groups=wheel --name={{ local_admin_name }} --password={{ local_admin_crypted_password }} --iscrypted --gecos="{{ local_admin_description }}" {% if local_admin_id is defined %}--uid={{ local_admin_id }} --gid={{ local_admin_id }}{% endif %}
+
+#== Partitioning ==
+
+ignoredisk --only-use={{ hard_drive_name }}
+# Fedora 31 has this option, not sure for what: iscsiname iqn.1994-05.com.redhat:545546228a23
+# System bootloader configuration
+bootloader --location=mbr --boot-drive={{ hard_drive_name }}
+# Partition clearing information
+clearpart --all --initlabel --drives={{ hard_drive_name }}
+# Disk partitioning information
+zerombr
+#TODO reqpart necessary?
+reqpart
+part /boot --fstype=ext4 --size=3072 --label=BOOTFS
+part /boot/efi --fstype=efi --size=600 --fsoptions="umask=0077,shortname=winnt"
+
+part pv.hd --fstype="lvmpv" --grow --size=500 {% if luks_passphrase is defined %}--encrypted --passphrase={{ luks_passphrase }}{% endif %}
+
+volgroup {{ vg_name }} --pesize=4096 pv.hd
+# --hibernation doesn't work properly, see https://bugzilla.redhat.com/1408666
+logvol swap --recommended --hibernation --name=Swap --vgname={{ vg_name }} --label=SWAPFS
+{% for fs in file_systems %}
+logvol {{ fs.mount }} --fstype={{ fs.type }} --name={{ fs.name }} --vgname={{ vg_name }} --size={{ fs.size }} {% if 'maxsize' in fs and fs.maxsize %}--maxsize={{ fs.maxsize }}{% endif %} {% if 'grow' in fs and fs.grow %}--grow{% endif %} --label={{ fs.label }}
+{% endfor %}
+
+# unsupported_hardware (optional) Tells the installation program to suppress the Unsupported Hardware Detected alert. If this command is not included and unsupported hardware is detected, the installation stalls at this alert. 
+
+# Reboot once the installation is finished
+reboot
+
+%packages
+{{ desktop_environment }}
+chrony
+ansible
+git
+
+%end
+
+%addon com_redhat_kdump --disable --reserve-mb='128'
+%end
+
+%post
+{% if gitlab_clone_url is defined %}
+git clone {{ gitlab_clone_url }} {{ gitlab_clone_target }}
+{% endif %}
+chown -R {{ local_admin_name }}.{{ local_admin_name }} {{ gitlab_clone_target }}
+touch /var/db/sudo/lectured/{{ local_admin_name }}
+
+%end
+
+# TODO decide what might be better for corporate environment (or required by IT)
+%anaconda
+pwpolicy root --minlen=10 --minquality=1 --notstrict --nochanges --notempty
+pwpolicy user --minlen=10 --minquality=1 --notstrict --nochanges --notempty
+pwpolicy luks --minlen=10 --minquality=1 --notstrict --nochanges --notempty
+%end

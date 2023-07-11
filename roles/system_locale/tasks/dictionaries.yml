@@ -1,0 +1,17 @@
+---
+
+- name: "Move away unnecessary dictionaries"
+  command: mv "{{ item }}" "{{ item }}~"
+  args:
+    removes: "{{ item }}"
+    creates: "{{ item }}~"
+  with_fileglob: "{{ system_locale_dictionaries_globs }}"
+  when: not (item | regex_search(locale_keep_dicts_langs | join("|")))
+
+- name: "Move back necessary dictionaries"
+  command: mv "{{ item }}" "{{ item | regex_replace('~$','') }}"
+  args:
+    removes: "{{ item }}"
+    creates: "{{ item | regex_replace('~$','') }}"
+  with_fileglob: "{{ system_locale_dictionaries_globs_tilde }}"
+  when: item | regex_search(locale_keep_dicts_langs | join("|"))

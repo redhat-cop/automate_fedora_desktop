@@ -1,0 +1,6 @@
+---
+# vars file for system_software_vscode
+
+software_vscode_rpm_key: https://packages.microsoft.com/keys/microsoft.asc
+
+software_vscode_rpm_repo: https://packages.microsoft.com/yumrepos/vscode

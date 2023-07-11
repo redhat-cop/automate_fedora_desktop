@@ -1,0 +1,18 @@
+---
+# tasks file for system_software
+- name: make a complete upgrade of all packages (takes quite some time)
+  dnf:
+    name: "*"
+    state: latest
+  tags: upgrade_all_packages
+- name: install packages required by default tasks
+  dnf:
+    name: "{{ software_fedora_mandatory }}"
+    state: present
+- name: install additional Fedora packages
+  dnf:
+    name: "{{ software_fedora_additional }}"
+    state: present
+- name: import tasks to enable and install packages from RPM Fusion
+  import_tasks: rpmfusion.yml
+  when: rpmfusion_licenses is defined and software_rpmfusion is defined

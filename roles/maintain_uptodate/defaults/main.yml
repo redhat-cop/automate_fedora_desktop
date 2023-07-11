@@ -1,0 +1,10 @@
+---
+# defaults file for maintain_uptodate
+# fedora_target_release should only be defined if you want to upgrade the system
+# fedora_target_release: 30
+#
+# sometimes, some packages create issue when an upgrade is done, remove them before
+fedora_upgrade_critical_packages:
+  32:
+    - system-config-keyboard
+    - python3-ansible-tower-cli

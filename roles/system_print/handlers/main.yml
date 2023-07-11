@@ -1,0 +1,7 @@
+---
+# handlers file for system_print
+- name: restart cups-browsed
+  service:
+    name: cups-browsed
+    state: restarted
+  listen: restart_cups_browsed

@@ -1,0 +1,25 @@
+---
+# defaults file for system_locale
+
+# Defines the keyboard layout, including potential options (which can't be
+# given in the kickstart). Use `localectl` with the following options
+# to see which values are available:
+#       list-x11-keymap-models list-x11-keymap-layouts
+#       list-x11-keymap-variants list-x11-keymap-options
+# if undefined/commented, nothing is configured
+#locale_keymap:
+#  layout: 'us'
+#  model: 'pc105'
+#  variant: 'euro'
+#  options: 'compose:caps'
+
+# Define the dictionary that you want to keep, other variants will be moved
+# away (until the next upgrade). The advantage is that only those dictionaries
+# are listed in e.g. Firefox and Thunderbird.
+#locale_keep_dicts_langs:
+#- fr_FR
+#- de_DE
+#- pl_PL
+#- en_US
+#- en_GB
+#- en_IE

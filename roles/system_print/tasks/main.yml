@@ -1,0 +1,28 @@
+---
+# tasks file for system_print
+
+- name: make sure cupsd is installed
+  package:
+    name: cups
+    state: present
+
+- name: configure CUPS server(s)
+  lineinfile:
+    create: true
+    dest: "/etc/cups/cups-browsed.conf"
+    line: "BrowsePoll {{ item }}"
+  with_items: "{{ cups_servers | default([]) }}"
+  notify:
+  - restart_cups_browsed
+
+- name: enable and start cups-browsed
+  service:
+    name: cups-browsed
+    enabled: true
+    state: started
+
+# TODO: enable ipp-client in firewall? (according to cups-browsed.conf)
+
+- name: import task file to install and configure cups-pdf
+  import_tasks: cups_pdf.yml
+  when: cups_pdf_config is defined
