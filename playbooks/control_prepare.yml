@@ -1,0 +1,7 @@
+---
+- name: prepare the inventory for a new desktop
+  hosts: all
+  gather_facts: false
+  become: false
+  roles:
+    - inventory_create

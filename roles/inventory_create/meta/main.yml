@@ -1,0 +1,19 @@
+galaxy_info:
+  author: Eric Lavarde
+  description: create an inventory and populate a host with default variables
+  company: Red Hat
+
+  issue_tracker_url: https://github.com/redhat-cop/automate_fedora_desktop
+
+  license: MIT
+
+  min_ansible_version: 2.13
+
+  platforms:
+  - name: Fedora
+    versions:
+    - all
+
+  galaxy_tags: [linux, Fedora, desktop, laptop]
+
+dependencies: []

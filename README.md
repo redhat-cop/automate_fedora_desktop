@@ -35,3 +35,9 @@ cd ~/.ansible/collections/ansible_collections/redhat_cop/automate_fedora_desktop
 You will need sudo rights to install Ansible and a few other dependencies.
 The `-h` option gives you a short usage help.
 The developer mode only makes sense if you've downloaded this collection using Git, and plan to modify it.
+
+3. Call `./scripts/10_inventory_create.sh <desktop-name>` to create a basic inventory for the desktop.
+The `-h` option gives you a short usage help.
+In the Ansible world, an inventory is a set of hosts and their variables.
+Go through the variable files created under `./inventory.myown.d/host_vars/<desktop-name>` and adapt them to your needs.
+Each file should have a set of YAML variables sufficiently explained, but in doubt you can check the file `roles/<role-name>/README.md` where role-name is the same as the file's name in the inventory.

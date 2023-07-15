@@ -1,0 +1,22 @@
+---
+# defaults file for inventory_create
+
+# base directory of the inventory of hosts and variables to create
+# by default in the same directory as the 'playbooks' directory,
+# with a name to be ignored by Git.
+inv_create_base_dir: "{{ playbook_dir | dirname }}/inventory.myown.d"
+
+# name of the host to add to the inventory
+inv_create_host_name: "{{ inventory_hostname }}"
+
+# directory of the newly created host in the inventory
+inv_create_host_dir: "{{ inv_create_base_dir }}/host_vars/{{ inv_create_host_name }}"
+
+# in which inventory group to put the new hosts
+inv_create_default_group: desktops
+
+# if an inventory already exists, overwrite existing files with defaults
+inv_create_force: false
+
+# if an inventory already exists, create a backup of modified files
+inv_create_backup: true

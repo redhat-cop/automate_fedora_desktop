@@ -1,3 +1,6 @@
 # vim temporary and backup files
 .*.swp
 *~
+
+# ignore my own locally created files
+*[._]myown[._]*
