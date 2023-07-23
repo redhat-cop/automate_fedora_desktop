@@ -2,10 +2,10 @@
 # defaults file for kickstart_create
 
 # hostname of the installed laptop - the inventory hostname will be used by default
-laptop_hostname: "{{ inventory_hostname }}"
+ks_create_hostname: "{{ fedora_desktop_hostname | default(inventory_hostname) }}"
 
 # target name of the generated kickstart, keep the hostname to differentiate
-kickstart_file: "{{ laptop_hostname }}.ks"
+kickstart_file: "{{ ks_create_hostname }}.ks"
 kickstart_dir: "{{ playbook_dir | dirname }}/ks.myown.d"
 
 # the release of the Fedora to use

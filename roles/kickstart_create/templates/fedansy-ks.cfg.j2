@@ -3,7 +3,7 @@
 
 # Network information
 network --bootproto=dhcp --device=link --activate --ipv6=auto
-network --hostname={{ laptop_hostname | default(inventory_hostname) }}
+network --hostname={{ ks_create_hostname }}
 # --essid= - The network ID for wireless networks.
 # --wpakey= - The WPA encryption key for wireless networks.
 # Firewall configuration

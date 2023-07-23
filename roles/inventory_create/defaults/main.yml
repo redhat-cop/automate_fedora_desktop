@@ -7,10 +7,10 @@
 inv_create_base_dir: "{{ playbook_dir | dirname }}/inventory.myown.d"
 
 # name of the host to add to the inventory
-inv_create_host_name: "{{ inventory_hostname }}"
+inv_create_hostname: "{{ fedora_desktop_hostname | default(inventory_hostname) }}"
 
 # directory of the newly created host in the inventory
-inv_create_host_dir: "{{ inv_create_base_dir }}/host_vars/{{ inv_create_host_name }}"
+inv_create_host_dir: "{{ inv_create_base_dir }}/host_vars/{{ inv_create_hostname }}"
 
 # in which inventory group to put the new hosts
 inv_create_default_group: desktops

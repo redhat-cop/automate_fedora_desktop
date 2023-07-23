@@ -1,6 +1,6 @@
 ---
 # tasks file for inventory_create
-- name: create inventory directories for the host '{{ inv_create_host_name }}'
+- name: create inventory directories for the host '{{ inv_create_hostname }}'
   ansible.builtin.file:
     path: "{{ inv_create_host_dir }}"
     state: directory
@@ -36,7 +36,7 @@
   ansible.builtin.lineinfile:
     create: true
     # either the variable of the host or the host's inventory name
-    line: "{{ hostvars[item]['inv_create_host_name'] | default(item) }}"
+    line: "{{ hostvars[item]['inv_create_hostname'] | default(item) }}"
     path: "{{ inv_create_base_dir }}/hosts"
     insertafter: "^\\[{{ inv_create_default_group }}\\]$"
   run_once: true
