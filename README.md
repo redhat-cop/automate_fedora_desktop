@@ -41,3 +41,8 @@ The `-h` option gives you a short usage help.
 In the Ansible world, an inventory is a set of hosts and their variables.
 Go through the variable files created under `./inventory.myown.d/host_vars/<desktop-name>` and adapt them to your needs.
 Each file should have a set of YAML variables sufficiently explained, but in doubt you can check the file `roles/<role-name>/README.md` where role-name is the same as the file's name in the inventory.
+
+4. Call `./scripts/20_desktop_create.sh <desktop-name>` to create the desktop.
+The `-h` option gives you a short usage help.
+In the current state of the implementation, only a [kickstart file](https://docs.fedoraproject.org/en-US/fedora/f36/install-guide/appendixes/Kickstart_Syntax_Reference/) is created.
+Perhaps we can do more in the future.

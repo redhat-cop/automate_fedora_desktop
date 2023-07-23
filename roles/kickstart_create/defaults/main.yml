@@ -1,12 +1,12 @@
 ---
 # defaults file for kickstart_create
 
-# target name of the generated kickstart
-kickstart_file: fedansy.ks
-kickstart_dir: ks.myown.d
-
 # hostname of the installed laptop - the inventory hostname will be used by default
-#laptop_hostname: whateveryouwant
+laptop_hostname: "{{ inventory_hostname }}"
+
+# target name of the generated kickstart, keep the hostname to differentiate
+kickstart_file: "{{ laptop_hostname }}.ks"
+kickstart_dir: "{{ playbook_dir | dirname }}/ks.myown.d"
 
 # the release of the Fedora to use
 fedora_release: 31
@@ -103,6 +103,6 @@ desktop_environment: '@^workstation-product-environment'
 ### PREPARE LAPTOP FOR ANSIBLE CONFIGURATION ###
 
 # you might want to overwrite this one if you use your own fork, else you shouldn't need to
-gitlab_clone_url: "https://gitlab.com/EricPublic/fedansy.git"
+gitlab_clone_url: "https://github.com/redhat-cop/automate_fedora_desktop.git"
 # To which directory do you want to clone the Git repo
 gitlab_clone_target: /var/tmp/fedansy

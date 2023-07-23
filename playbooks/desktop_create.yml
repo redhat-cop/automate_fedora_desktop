@@ -1,0 +1,13 @@
+---
+# the playbook only creates a kickstart for now but it could do more...
+- name: boot and install the new desktop
+  hosts: all
+  gather_facts: false
+  become: false
+
+  tasks:
+
+  - name: call kickstart_create role
+    import_role:
+      name: kickstart_create
+    tags: kickstart_create
