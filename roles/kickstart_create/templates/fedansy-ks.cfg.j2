@@ -95,10 +95,3 @@ chown -R {{ local_admin_name }}.{{ local_admin_name }} {{ ks_create_git_clone_ta
 touch /var/db/sudo/lectured/{{ local_admin_name }}
 
 %end
-
-# TODO decide what might be better for corporate environment (or required by IT)
-%anaconda
-pwpolicy root --minlen=10 --minquality=1 --notstrict --nochanges --notempty
-pwpolicy user --minlen=10 --minquality=1 --notstrict --nochanges --notempty
-pwpolicy luks --minlen=10 --minquality=1 --notstrict --nochanges --notempty
-%end
