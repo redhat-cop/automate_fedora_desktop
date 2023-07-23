@@ -1,18 +1,14 @@
 #!/bin/sh
-# Script to install the pre-requisites required on the control host
-# Make sure you have sudo rights, avoid calling directly as root!
+# Create the inventory with all information necessary for the new desktop
 
-# the RPMs we want to install
-RPMS=(ansible-core git pykickstart curl mediawriter)
 FEDORA_COLLECTION=redhat_cop.automate_fedora_desktop
-DEVELOPER_MODE=
-INTERACTIVE=
 VERBOSE=
 
 function usage() {
 	local exit_code=${1:-0}
 	echo "Usage: $0 [-h] <one or more hosts>"
 	echo "       -h - output usage and exit"
+	echo "       -v - verbose"
 	echo "       one or more hosts separated by commas, without blanks"
 	exit ${exit_code}
 }
@@ -24,6 +20,9 @@ do
 	case "${opt}" in
 	h)
 		usage 0
+		;;
+	v)
+		VERBOSE=-v
 		;;
 	?)
 		echo "Unknown option" >&2
@@ -41,6 +40,6 @@ then
 fi
 
 # call the playbook with the host(s) as minimal inventory but run on localhost
-ansible-playbook -i "$*," \
-	redhat_cop.automate_fedora_desktop.control_prepare.yml \
-	-e ansible_host=localhost
+ansible-playbook -i "$*," ${VERBOSE} \
+	${FEDORA_COLLECTION}.inventory_create \
+	-e ansible_host=localhost --connection local
