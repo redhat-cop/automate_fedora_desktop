@@ -46,3 +46,6 @@ Each file should have a set of YAML variables sufficiently explained, but in dou
 The `-h` option gives you a short usage help.
 In the current state of the implementation, only a [kickstart file](https://docs.fedoraproject.org/en-US/fedora/f36/install-guide/appendixes/Kickstart_Syntax_Reference/) is created.
 Perhaps we can do more in the future.
+
+5. Download the (latest) [Fedora Server Network Install ISO](https://fedoraproject.org/server/download/) image, and verify it according to the instructions on the web page!
+Then copy the ISO image to the _correct_ USB stick (pay attention to the correct **X** according to `lsblk`! See [preparation details](https://docs.fedoraproject.org/en-US/fedora-server/installation/#_preparations)) with `sudo dd if=Fedora-Server-netinst-x86_64-38-1.6.iso of=/dev/sdX bs=8M status=progress`.
