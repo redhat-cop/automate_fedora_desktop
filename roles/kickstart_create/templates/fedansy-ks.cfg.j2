@@ -37,7 +37,7 @@ lang {{ system_language }}
 {% endif %}
 {% if system_timezone is defined %}
 # System timezone
-timezone {{ system_timezone }} --isUtc
+timezone {{ system_timezone }} --utc
 {% endif %}
 
 #== User passwords ==
@@ -88,10 +88,10 @@ git
 %end
 
 %post
-{% if gitlab_clone_url is defined %}
-git clone {{ gitlab_clone_url }} {{ gitlab_clone_target }}
+{% if ks_create_git_clone_url is defined %}
+git clone {{ ks_create_git_clone_url }} {{ ks_create_git_clone_target }}
 {% endif %}
-chown -R {{ local_admin_name }}.{{ local_admin_name }} {{ gitlab_clone_target }}
+chown -R {{ local_admin_name }}.{{ local_admin_name }} {{ ks_create_git_clone_target }}
 touch /var/db/sudo/lectured/{{ local_admin_name }}
 
 %end
