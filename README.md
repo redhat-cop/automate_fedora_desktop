@@ -13,7 +13,11 @@ This documentation uses the following terminology:
 1. the "webserver" is a web server, which one doesn't matter, from which you'll serve the kickstart file necessary to steer the installation.
 The control host can be used as webserver.
 
-## Installation on the control host
+## Newcomers instructions
+
+Those instructions are meant to get people without [Ansible](https://ansible.com) knowledge started.
+If you're a seasoned Ansible user, you can simply use this collection like any other Ansible collection, and consider these instructions as _one_ usage example of it.
+These instructions are kept on purpose as straightforward as possible, even the scripts have more options than described, and the roles/modules used probably even more.
 
 1. get the collection on your control host, either using Git or ansible-galaxy, and change to the corresponding directory:
 
@@ -61,3 +65,5 @@ Check [more boot options](https://docs.fedoraproject.org/en-US/fedora/rawhide/in
     4. Wait until the laptop is installed and rebooted.
 You can login as local admin and continue with the configuration, SSHD runs and Ansible is installed.
 If defined so, this Git repo is already available in `/var/tmp/automate_fedora_desktop` to continue.
+
+**To Be Continued**
