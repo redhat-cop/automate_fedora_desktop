@@ -54,10 +54,10 @@ You can kill the playbook but beware that the HTTP server will continue to run a
 
 6. From now on, be VERY CAREFUL: the new desktop will be completely **WIPED**.
    Boot the new desktop from the previously created USB stick (how depends on its make), then
-    a. Select the first line of the menu (Start Fedora...) with the up/down keys and press 'e' for Edit.
-    b. Edit the 'linuxefi' line: `linuxefi inst.stage2=hd:LABEL=Fedora-S-dvd-x86_64-38 inst.ks=http://my.own.web.server/myhost.ks` (basically replace `quiet` with `inst.ks=...`).
-Check https://docs.fedoraproject.org/en-US/fedora/rawhide/install-guide/advanced/Boot_Options/[more boot options].
-    c. Press Ctrl-x to start
-    d. Wait until the laptop is installed and rebooted.
+    1. Select the first line of the menu (Start Fedora...) with the up/down keys and press 'e' for Edit.
+    2. Edit the 'linuxefi' line: `linuxefi inst.stage2=hd:LABEL=Fedora-S-dvd-x86_64-38 inst.ks=http://my.own.web.server/myhost.ks` (basically replace `quiet` with `inst.ks=...`).
+Check [more boot options](https://docs.fedoraproject.org/en-US/fedora/rawhide/install-guide/advanced/Boot_Options/).
+    3. Press Ctrl-x to start
+    4. Wait until the laptop is installed and rebooted.
 You can login as local admin and continue with the configuration, SSHD runs and Ansible is installed.
 If defined so, this Git repo is already available in `/var/tmp/automate_fedora_desktop` to continue.
