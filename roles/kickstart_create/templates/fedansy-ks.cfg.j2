@@ -79,7 +79,9 @@ reboot
 %packages
 {{ desktop_environment }}
 chrony
-ansible
+ansible-core
+ansible-collection-ansible-posix
+ansible-collection-community-general
 git
 
 %end
@@ -88,10 +90,23 @@ git
 %end
 
 %post
+mkdir -p {{ ks_create_git_clone_target | dirname }}
 {% if ks_create_git_clone_url is defined %}
 git clone {{ ks_create_git_clone_url }} {{ ks_create_git_clone_target }}
+{% else %}
+mkdir -p {{ ks_create_git_clone_target }}
 {% endif %}
-chown -R {{ local_admin_name }}.{{ local_admin_name }} {{ ks_create_git_clone_target }}
+{% if ks_create_copy_inventory %}
+echo "{{ __ks_create_inventory }}" | base64 -d | tar xzf - -C {{ ks_create_git_clone_target }}
+{% endif %}
+chown -R {{ local_admin_name }}:{{ local_admin_name }} {{ ks_create_git_clone_target }}
+{% if ks_create_local_exec_system %}
+mkdir -p ~/.ansible/collections/ansible_collections/redhat_cop
+ln -s {{ ks_create_git_clone_target }} ~/.ansible/collections/ansible_collections/redhat_cop/automate_fedora_desktop
+LC_ALL=C.UTF-8 ansible-playbook -i {{ ks_create_git_clone_target }}/{{ inventory_dir | basename }} redhat_cop.automate_fedora_desktop.system_configure --limit {{ ks_create_hostname }} --connection local
+rm -fr  ~/.ansible/collections/ansible_collections/redhat_cop  # for security
+{% endif %}
+
 touch /var/db/sudo/lectured/{{ local_admin_name }}
 
 %end

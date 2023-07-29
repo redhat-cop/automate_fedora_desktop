@@ -1,0 +1,22 @@
+---
+- name: call all roles necessary to configure the current user
+  hosts: all
+  gather_facts: false
+  become: false
+  pre_tasks:
+    - name: gather existing roles
+      ansible.builtin.find:
+        paths: "{{ playbook_dir | dirname }}/roles"
+        depth: 1
+        file_type: directory
+        pattern: "user_*"
+      register: __user_roles
+  tasks:
+    - name: call each user role
+      ansible.builtin.include_role:
+        name: "{{ __user_role_name }}"
+      vars:
+        __user_role_name: "{{ item.path | basename }}"
+      loop: "{{ __user_roles.files }}"
+      loop_control:
+        label: "{{ item.path | basename }}"

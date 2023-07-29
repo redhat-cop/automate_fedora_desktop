@@ -106,3 +106,9 @@ desktop_environment: '@^workstation-product-environment'
 ks_create_git_clone_url: "https://github.com/redhat-cop/automate_fedora_desktop.git"
 # To which directory do you want to clone the Git repo
 ks_create_git_clone_target: /var/tmp/fedansy
+
+# copy the inventory as part of the kickstart to restore on the desktop
+ks_create_copy_inventory: true
+
+# execute all system roles at the end of the kickstart
+ks_create_local_exec_system: true
