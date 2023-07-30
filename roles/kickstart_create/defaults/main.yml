@@ -14,7 +14,7 @@ fedora_release: 38
 # The following URL should work but if one of the mirrors is wrong, then
 # the whole procedure might fail, so better take a known good mirror by
 # entering the Fedora URL in your favorite browser and take what's coming
-#fedora_download_url: "http://download.fedoraproject.org/pub/fedora/linux/releases/{{ fedora_release }}/Everything/x86_64/os/"
+## fedora_download_url: "http://download.fedoraproject.org/pub/fedora/linux/releases/{{ fedora_release }}/Everything/x86_64/os/"
 # adapt the following URL to take one near to you:
 fedora_download_url: "https://ftp-stud.hs-esslingen.de/pub/fedora/linux/releases/{{ fedora_release }}/Everything/x86_64/os/"
 
@@ -22,18 +22,18 @@ fedora_download_url: "https://ftp-stud.hs-esslingen.de/pub/fedora/linux/releases
 # we don't define defaults so that the generation fails if you don't make a choice
 
 # define your keyboard keymap and xlayout
-#keyboard_keymap: "us"
-#keyboard_xlayout: "us"
-#keyboard_keymap: "us-euro"
-#keyboard_xlayout: "us (euro)"
+## keyboard_keymap: "us"
+## keyboard_xlayout: "us"
+## keyboard_keymap: "us-euro"
+## keyboard_xlayout: "us (euro)"
 
 # define your language
-#system_language: en_US.UTF-8
-#system_language: en_IE.UTF-8
+## system_language: en_US.UTF-8
+## system_language: en_IE.UTF-8
 
 # define your system timezone
-#system_timezone: America/New_York
-#system_timezone: Europe/Berlin
+## system_timezone: America/New_York
+## system_timezone: Europe/Berlin
 
 ### USER PARAMETERS ###
 
@@ -49,45 +49,45 @@ local_admin_description: "Local Admin User"
 # the default is 1234567890 - CHANGE IT!!!
 local_admin_crypted_password: $6$Lpv1gD9awFbHYe2r$XujfNnfILfK3Oi03J/nJoM35bJZuWrGyW6YFHc.c0CtMuo3I52f.Nblc4yIOhhs0MfpIBKV4K9VoNBAk7.7721
 # set an admin ID below 500 if you want the local admin to not appear in the greeter
-#local_admin_id: 499
+## local_admin_id: 499
 
 ### PARTITIONING ###
 
 # device name of the hard drive in the laptop to use for partitioning
 # it'll fail if not defined!
-#hard_drive_name: sda
-#hard_drive_name: nvme0n1
+## hard_drive_name: sda
+## hard_drive_name: nvme0n1
 
 # Volume Group name
 vg_name: FedoVG
 
 # default passphrase of the luks partition, you can modify it later
 # if it's undefined, no encryption is taking place
-#luks_passphrase: 1234567890
+## luks_passphrase: 1234567890
 
 # list of file systems
 file_systems:
-- mount: /
-  type: xfs
-  name: Root
-  size: 49152
-  label: ROOTFS
-- mount: /home
-  type: xfs
-  name: Home
-  size: 4096
-  maxsize: 102400
-  label: HOMEFS
-  grow: true
+  - mount: /
+    type: xfs
+    name: Root
+    size: 49152
+    label: ROOTFS
+  - mount: /home
+    type: xfs
+    name: Home
+    size: 4096
+    maxsize: 102400
+    label: HOMEFS
+    grow: true
 # I like to have a separate partition for data potentially useful to
 # multiple users, you might not need this and keep all data in /home.
 # In this case, remove the following lines and remove maxsize from /home above
-- mount: /srv
-  type: xfs
-  name: Srv
-  size: 4096
-  label: SRVFS
-  grow: true
+  - mount: /srv
+    type: xfs
+    name: Srv
+    size: 4096
+    label: SRVFS
+    grow: true
 
 ### SOFTWARE SETUP ###
 

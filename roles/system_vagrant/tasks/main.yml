@@ -23,5 +23,6 @@
     state: present
   when: vagrant_block_plugins
 - name: setup vagrant, libvirt and polkit to allow for password-less usage
-  ansible.builtin.import_tasks: libvirt_no_passwd.yml
+  ansible.builtin.include_tasks:
+    file: libvirt_no_passwd.yml
   when: vagrant_libvirt_no_passwd

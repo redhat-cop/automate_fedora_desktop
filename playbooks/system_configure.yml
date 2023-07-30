@@ -1,5 +1,5 @@
 ---
-- name: call all roles necessary to configure the system
+- name: Call all roles necessary to configure a Fedora system
   hosts: all
   gather_facts: false
   become: true

@@ -5,21 +5,9 @@
 cups_servers: []
 
 # If you want to install CUPS-PDF, uncomment one of the following definitions
-# of cups_pdf_config, each entry configures an option in /etc/cups/cups-pdf.conf
-#cups_pdf_config: []  # install but don't configure
-#cups_pdf_config:     # also uncomment at least one list entry to configure
-### Key: Out (config) - CUPS-PDF output directory
-##  special qualifiers:
-##     ${HOME} will be expanded to the user's home directory
-##     ${USER} will be expanded to the user name
-##  Add for Fedora (see ~/.config/user-dirs.dirs)
-##     ${DESKTOP} will be expanded to the user's desktop directory
-##  in case it is an NFS export make sure it is exported without
-##  root_squash!
-### Default: /var/spool/cups-pdf/${USER} (${DESKTOP} under Fedora)
-#- "Out ${HOME}/Downloads/PDF"
-##  0: label untitled documents only
-##  1: label all documents with a preceeding "job_#-"
-##  2: label all documents with a tailing "-job_#"
-### Default: 0
-#- "Label 1"
+# of cups_pdf_config, each entry configures an option in
+# /etc/cups/cups-pdf.conf - check there for more information
+## cups_pdf_config: []  # install but don't configure
+## cups_pdf_config:     # install and change certain configurations
+##   - "Out ${HOME}/Downloads/PDF"
+##   - "Label 1"  # prefix all document with `job_#-`

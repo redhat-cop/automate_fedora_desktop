@@ -1,0 +1,6 @@
+---
+# vars file for system_power
+system_power_packages:
+  - tlp
+  - tlp-rdw
+  - powertop

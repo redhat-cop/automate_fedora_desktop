@@ -11,9 +11,10 @@
     create: true
     dest: "/etc/cups/cups-browsed.conf"
     line: "BrowsePoll {{ item }}"
+    mode: "0644"
   with_items: "{{ cups_servers | default([]) }}"
   notify:
-  - restart_cups_browsed
+    - restart_cups_browsed
 
 - name: enable and start cups-browsed
   ansible.builtin.service:
@@ -24,5 +25,6 @@
 # TODO: enable ipp-client in firewall? (according to cups-browsed.conf)
 
 - name: import task file to install and configure cups-pdf
-  ansible.builtin.import_tasks: cups_pdf.yml
+  ansible.builtin.include_tasks:
+    file: cups_pdf.yml
   when: cups_pdf_config is defined

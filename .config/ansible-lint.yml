@@ -1,0 +1,11 @@
+---
+# ansible-lint configuration
+
+profile: production
+
+skip_list:
+  - name[casing]
+
+enable_list:
+  - name[prefix]
+  - no-free-form

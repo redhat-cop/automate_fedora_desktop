@@ -4,28 +4,27 @@
 # list of additional packages which the user might want to have from Fedora
 software_fedora_additional: []
 # e.g. (remove the square brackets above and uncomment below what you'd like to have)
-#- vim-enhanced
-#- vim-X11
+##   - vim-enhanced
+##   - vim-X11
 # list of Gnome shell extensions necessary for gnome2-alike experience (activate per user in user_desktop)
-#- gnome-shell-extension-background-logo
-#- gnome-shell-extension-apps-menu
-#- gnome-shell-extension-launch-new-instance
-#- gnome-shell-extension-window-list
-#- gnome-shell-extension-places-menu
-#- gnome-shell-extension-horizontal-workspaces
-#- gnome-shell-extension-topicons-plus
+##   - gnome-shell-extension-background-logo
+##   - gnome-shell-extension-apps-menu
+##   - gnome-shell-extension-launch-new-instance
+##   - gnome-shell-extension-window-list
+##   - gnome-shell-extension-places-menu
+##   - gnome-shell-extension-horizontal-workspaces
+##   - gnome-shell-extension-topicons-plus
 
 # NOTE: you need to have both rpmfusion_licenses and software_rpmfusion defined
 #       for anything to happen. software_rpmfusion can also be an empty list i.e. []
 
 # often having RPMFusion is necessary but it's your choice, also which kind of licenses
 # you're ready to accept
-#rpmfusion_licenses:
-#- free
-#- nonfree
+## rpmfusion_licenses:
+##   - free
+##   - nonfree
 
 # which software do you want to install from RPMFusion
-#software_rpmfusion:
-#- exfat-utils  # get support for the exfat file system
-#- fuse-exfat  # get support for the exfat file system
-
+## software_rpmfusion:
+##   - exfat-utils  # get support for the exfat file system
+##   - fuse-exfat  # get support for the exfat file system

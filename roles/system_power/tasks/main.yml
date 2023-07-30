@@ -3,16 +3,15 @@
 
 - name: install power management software
   ansible.builtin.package:
-    name:
-    - tlp
-    - tlp-rdw
-    - powertop
+    name: "{{ system_power_packages }}"
     state: present
 - name: power tune your system and optionally calibrate (screen might flicker)
-  ansible.builtin.command: powertop {% if power_calibrate %}--calibrate{% endif %} --auto-tune
+  ansible.builtin.command:
+    cmd: powertop {% if power_calibrate %}--calibrate{% endif %} --auto-tune
   when: power_autotune
+  changed_when: true  # just keeping ansible-lint happy
 - name: enable and start tlp service
-  service:
+  ansible.builtin.service:
     name: tlp
     state: started
     enabled: true

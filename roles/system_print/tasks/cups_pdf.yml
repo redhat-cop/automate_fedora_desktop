@@ -1,13 +1,14 @@
 ---
-- name: install cups-pdf package
+- name: cups_pdf | install cups-pdf package
   ansible.builtin.package:
     name: cups-pdf
     state: present
-- name: configure cups-pdf
+  become: true
+- name: cups_pdf | configure cups-pdf
   ansible.builtin.lineinfile:
     path: /etc/cups/cups-pdf.conf
     line: "{{ item }}"
-    regexp: "^{{ item | regex_replace(' .*',' ') }}.*"
-    insertafter: "^#{{ item | regex_replace(' .*',' ') }}.*"
+    regexp: "^{{ item | regex_replace(' .*', ' ') }}.*"
+    insertafter: "^#{{ item | regex_replace(' .*', ' ') }}.*"
   loop: "{{ cups_pdf_config }}"
-
+  become: true

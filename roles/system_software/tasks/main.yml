@@ -1,10 +1,5 @@
 ---
 # tasks file for system_software
-- name: make a complete upgrade of all packages (takes quite some time)
-  ansible.builtin.dnf:
-    name: "*"
-    state: latest
-  tags: upgrade_all_packages
 - name: install packages required by default tasks
   ansible.builtin.dnf:
     name: "{{ software_fedora_mandatory }}"
@@ -14,5 +9,8 @@
     name: "{{ software_fedora_additional }}"
     state: present
 - name: import tasks to enable and install packages from RPM Fusion
-  ansible.builtin.import_tasks: rpmfusion.yml
-  when: rpmfusion_licenses is defined and software_rpmfusion is defined
+  ansible.builtin.import_tasks:
+    file: rpmfusion.yml
+  when:
+    - rpmfusion_licenses is defined
+    - software_rpmfusion is defined

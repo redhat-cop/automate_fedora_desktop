@@ -10,6 +10,7 @@
     marker: "{{ item.marker | default(omit) }}"
     state: present
     validate: "{{ item.validate | default(omit) }}"
+    mode: "0640"
   loop: "{{ user_config_files }}"
   loop_control:
     label: "{{ item.name }}"

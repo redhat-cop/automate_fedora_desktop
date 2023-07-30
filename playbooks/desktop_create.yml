@@ -1,18 +1,16 @@
 ---
 # the playbook only creates a kickstart for now but it could do more...
-- name: boot and install the new desktop
+- name: Boot and install the new desktop
   hosts: all
   gather_facts: false
   become: false
 
   tasks:
-
-  - name: call kickstart_create role
-    import_role:
-      name: kickstart_create
-    tags: kickstart_create
-
-  - name: call kickstart_serve role
-    import_role:
-      name: kickstart_serve
-    tags: kickstart_serve
+    - name: call kickstart_create role
+      ansible.builtin.import_role:
+        name: kickstart_create
+      tags: kickstart_create
+    - name: call kickstart_serve role
+      ansible.builtin.import_role:
+        name: kickstart_serve
+      tags: kickstart_serve

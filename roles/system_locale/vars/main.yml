@@ -1,15 +1,16 @@
 ---
-
+# list of files to copy back and forth to enable...
 system_locale_dictionaries_globs:
-- /usr/share/myspell/*.aff
-- /usr/share/myspell/*.dic
-- /usr/share/hyphen/hyph*.dic
-- /usr/share/mythes/th*.dat
-- /usr/share/mythes/th*.idx
+  - /usr/share/myspell/*.aff
+  - /usr/share/myspell/*.dic
+  - /usr/share/hyphen/hyph*.dic
+  - /usr/share/mythes/th*.dat
+  - /usr/share/mythes/th*.idx
 
+# ... and disable them
 system_locale_dictionaries_globs_tilde:
-- /usr/share/myspell/*.aff~
-- /usr/share/myspell/*.dic~
-- /usr/share/hyphen/hyph*.dic~
-- /usr/share/mythes/th*.dat~
-- /usr/share/mythes/th*.idx~
+  - /usr/share/myspell/*.aff~
+  - /usr/share/myspell/*.dic~
+  - /usr/share/hyphen/hyph*.dic~
+  - /usr/share/mythes/th*.dat~
+  - /usr/share/mythes/th*.idx~

@@ -9,7 +9,7 @@ vagrant_block_plugins: true
 
 # You might have special requirements for locally compiling Vagrant plug-ins
 vagrant_plugin_own_deps:
-- libvirt-devel
+  - libvirt-devel
 
 # You might want users to use Vagrant with Libvirt without typing a password
 vagrant_libvirt_no_passwd: false

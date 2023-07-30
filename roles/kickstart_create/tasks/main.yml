@@ -4,6 +4,7 @@
   ansible.builtin.file:
     state: directory
     path: "{{ kickstart_dir }}"
+    mode: "0755"
 
 - name: create full path to kickstart file
   ansible.builtin.set_fact:
@@ -21,6 +22,7 @@
     dest: "{{ kickstart_path }}"
     src: fedansy-ks.cfg.j2
     validate: 'ksvalidator --version F{{ fedora_release }} %s'
+    mode: "0640"
   delegate_to: localhost
 
 - name: output path to created kickstart file

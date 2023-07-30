@@ -2,13 +2,13 @@
 # vars file for system_vagrant
 # list of vagrant plugins packaged in Fedora
 vagrant_plugins:
-- vagrant-libvirt  # libvirt provider
-- vagrant-cachier  # plugin to cache packages
-- vagrant-hostmanager  # plugin to manage /etc/hosts
-- vagrant-openstack-provider  # plugin for OpenStack provider
-- vagrant-sshfs.noarch  # synced folder plugin that mounts folders via SSHFS
-- vagrant-digitalocean.noarch  # plugin for Digital Ocean as a provider
+  - vagrant-libvirt  # libvirt provider
+  - vagrant-cachier  # plugin to cache packages
+  - vagrant-hostmanager  # plugin to manage /etc/hosts
+  - vagrant-openstack-provider  # plugin for OpenStack provider
+  - vagrant-sshfs.noarch  # synced folder plugin that mounts folders via SSHFS
+  - vagrant-digitalocean.noarch  # plugin for Digital Ocean as a provider
 
 # list of RPM packaged required to compile Vagrant plug-ins locally
 vagrant_plugin_deps:
-- ruby-devel
+  - ruby-devel

@@ -3,7 +3,7 @@
 
 # set a desktop name (only gnome and xfce are implemented for now,
 # or comment if you don't want to configure any desktop)
-#user_desktop_name: gnome
+## user_desktop_name: gnome
 
 # Enter the list of Gnome Shell Extensions you're interested in.
 # CAUTION: they must have been installed previously! (e.g. using system_software)
@@ -11,15 +11,15 @@
 # gnome_shell_extensions: []
 # and comment the following:
 gnome_shell_extensions:
-- "background-logo@fedorahosted.org"
-# I suspect the user-theme one to be unstable
-#- "user-theme@gnome-shell-extensions.gcampax.github.com"
-- "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
-- "apps-menu@gnome-shell-extensions.gcampax.github.com"
-- "window-list@gnome-shell-extensions.gcampax.github.com"
-- "places-menu@gnome-shell-extensions.gcampax.github.com"
-- "alternate-tab@gnome-shell-extensions.gcampax.github.com"
-- "TopIcons@phocean.net"
+  - "background-logo@fedorahosted.org"
+  # I suspect the user-theme one to be unstable
+  ## - "user-theme@gnome-shell-extensions.gcampax.github.com"
+  - "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
+  - "apps-menu@gnome-shell-extensions.gcampax.github.com"
+  - "window-list@gnome-shell-extensions.gcampax.github.com"
+  - "places-menu@gnome-shell-extensions.gcampax.github.com"
+  - "alternate-tab@gnome-shell-extensions.gcampax.github.com"
+  - "TopIcons@phocean.net"
 
 #### XFCE ####
 
@@ -31,13 +31,14 @@ gnome_shell_extensions:
 # make sure that the values are always _strings_ (i.e. always in quotes)
 # or conversion errors will quite surely happen
 
-#xfce_configs:
-#- chan: xfce4-power-manager
-#  prop: /xfce4-power-manager/lid-action-on-battery  # also lid-action-on-ac
-#  value: "1"  # 0: switch off display, 1: suspend, 2: hibernate, 3: lock screen
-#- chan: xfce4-power-manager
-#  prop: /xfce4-power-manager/logind-handle-lid-switch
-#  value: "true"  # true with action == 1, else false
-#- chan: xfce4-power-manager
-#  prop: /xfce4-power-manager/handle-brightness-keys
-#  value: "true"
+## xfce_configs:
+##   - chan: xfce4-power-manager
+##     prop: /xfce4-power-manager/lid-action-on-battery  # also lid-action-on-ac
+##     value: "1"
+# 0: switch off display, 1: suspend, 2: hibernate, 3: lock screen
+##   - chan: xfce4-power-manager
+##     prop: /xfce4-power-manager/logind-handle-lid-switch
+##     value: "true"  # true with action == 1, else false
+##   - chan: xfce4-power-manager
+##     prop: /xfce4-power-manager/handle-brightness-keys
+##     value: "true"

@@ -10,7 +10,7 @@
     state: "{{ item.state | default(omit) }}"
     append: true
   loop: "{{ local_users }}"
-- name: Add polkit rule to allow libvirt usage by {{ local_admin_group }} group
+- name: Add polkit rule to allow libvirt usage by group {{ local_admin_group }}
   ansible.builtin.template:
     src: templates/polkit-libvirt.rules.j2
     dest: /etc/polkit-1/rules.d/80-libvirt.rules

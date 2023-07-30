@@ -1,5 +1,5 @@
 ---
-- name: call all roles necessary to configure the current user
+- name: Call all roles necessary to configure the current Fedora user
   hosts: all
   gather_facts: false
   become: false

@@ -17,6 +17,7 @@
     dest: "{{ inv_create_host_dir }}/{{ __inv_create_role_name }}.yml"
     force: "{{ inv_create_force }}"
     backup: "{{ inv_create_backup }}"
+    mode: "0640"
   vars:
     __inv_create_role_defs: "{{ item.path }}/defaults/main.yml"
     __inv_create_role_name: "{{ item.path | basename }}"
@@ -31,6 +32,7 @@
     dest: "{{ inv_create_base_dir }}/hosts"
     force: false
     backup: "{{ inv_create_backup }}"
+    mode: "0640"
   run_once: true
 - name: add host to hosts file
   ansible.builtin.lineinfile:
@@ -39,5 +41,6 @@
     line: "{{ hostvars[item]['inv_create_hostname'] | default(item) }}"
     path: "{{ inv_create_base_dir }}/hosts"
     insertafter: "^\\[{{ inv_create_default_group }}\\]$"
+    mode: "0640"
   run_once: true
   loop: "{{ ansible_play_hosts }}"

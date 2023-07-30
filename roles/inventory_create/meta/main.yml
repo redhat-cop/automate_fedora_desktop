@@ -7,13 +7,13 @@ galaxy_info:
 
   license: MIT
 
-  min_ansible_version: 2.13
+  min_ansible_version: "2.13"
 
   platforms:
-  - name: Fedora
-    versions:
-    - all
+    - name: Fedora
+      versions:
+        - all
 
-  galaxy_tags: [linux, Fedora, desktop, laptop]
+  galaxy_tags: [linux, fedora, desktop, laptop]
 
 dependencies: []

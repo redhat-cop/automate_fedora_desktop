@@ -1,21 +1,11 @@
 ---
 # tasks file for system_wlan
 
-# It's not required as far as I know, but perhaps later useful
-#- name: we assume only one wifi device and we find it out
-#  ansible.builtin.shell: nmcli device | awk '$2 == "wifi" {print $1}'
-#  register: wlan_device
-#  changed_when: false
-#  check_mode: false
-#- name: use nicer variable name for WLAN device
-#  ansible.builtin.set_fact:
-#    wlan_device_name: "{{ wlan_device.stdout }}"
-#  check_mode: false
 - name: install the ifcfg templates
   ansible.builtin.template:
     src: "ifcfg-WLAN.j2"
     dest: "{{ network_config_dir }}/ifcfg-{{ item.name }}"
-    mode: u=rw,go=r
+    mode: "u=rw,go=r"
   loop: "{{ wlans_list }}"
   loop_control:
     label: "{{ item.name }}"
@@ -24,7 +14,7 @@
   ansible.builtin.template:
     src: "keys-WLAN.j2"
     dest: "{{ network_config_dir }}/keys-{{ item.name }}"
-    mode: u=rw,go=
+    mode: "u=rw,go="
   when: "'key' in item"
   loop: "{{ wlans_list }}"
   loop_control:
@@ -34,6 +24,7 @@
   ansible.builtin.template:
     src: "route-WLAN.j2"
     dest: "{{ network_config_dir }}/route-{{ item.name }}"
+    mode: "u=rw,go=r"
   when: "item.routes is defined"
   loop: "{{ wlans_list }}"
   loop_control:
