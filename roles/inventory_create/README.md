@@ -12,7 +12,7 @@ n/a
 Role Variables
 --------------
 
-cf. defaults/main.yml
+cf. [defaults/main.yml](defaults/main.yml) for all details.
 
 Dependencies
 ------------
@@ -32,9 +32,10 @@ Calling the following playbook with `-i host1,host2,` will create an inventory l
 License
 -------
 
-BSD
+MIT
 
 Author Information
 ------------------
 
-Eric Lavarde, Automation Principal Architect at Red Hat Consulting
+Eric Lavarde, Automation Principal Architect at Red Hat Consulting,
+with the Automation Community of Practice (CoP) from Red Hat

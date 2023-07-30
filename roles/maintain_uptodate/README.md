@@ -1,5 +1,5 @@
-Role Name
-=========
+maintain\_uptodate
+=================
 
 A role to keep Fedora up-to-date also across major revisions.
 
@@ -15,6 +15,8 @@ By default, the role only does a `dnf update` and outputs the current version of
 If the variable `fedora_target_release` is defined (e.g. to 30) then the role will upgrade
 the host to this release, assumed the current release `ansible_distribution_major_version`
 is defined (generally by gathering facts) and lower than the target revision.
+
+cf. [defaults/main.yml](defaults/main.yml) for all details.
 
 Dependencies
 ------------
@@ -33,9 +35,10 @@ Including an example of how to use your role (for instance, with variables passe
 License
 -------
 
-BSD
+MIT
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Eric Lavarde, Automation Principal Architect at Red Hat Consulting,
+with the Automation Community of Practice (CoP) from Red Hat

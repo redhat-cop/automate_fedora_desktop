@@ -12,7 +12,7 @@ In order to open the firewall, root access is required.
 Role Variables
 --------------
 
-cf. defaults/main.yml
+cf. [defaults/main.yml](defaults/main.yml) for all details.
 
 Dependencies
 ------------
@@ -35,4 +35,5 @@ MIT
 Author Information
 ------------------
 
-Eric Lavarde, Automation Principal Architect, Red Hat Consulting
+Eric Lavarde, Automation Principal Architect at Red Hat Consulting,
+with the Automation Community of Practice (CoP) from Red Hat
