@@ -2,7 +2,7 @@
 # tasks file for user_desktop
 
 - name: activate the Gnome Shell extensions
-  command: gnome-shell-extension-tool -e "{{ item }}"
+  ansible.builtin.command: gnome-shell-extension-tool -e "{{ item }}"
   loop: "{{ gnome_shell_extensions }}"
   register: res
   changed_when: not "is already enabled" in res.stderr

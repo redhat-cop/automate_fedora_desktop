@@ -1,6 +1,6 @@
 ---
 - name: include xfconf to query and set each configuration item
-  include_tasks:
+  ansible.builtin.include_tasks:
     file: desktop_xfce_xfconf.yml
   loop: "{{ xfce_configs }}"
   loop_control:

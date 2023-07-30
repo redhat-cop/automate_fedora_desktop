@@ -1,28 +1,28 @@
 ---
 # tasks file for kickstart_create
 - name: create temporary kickstart directory
-  file:
+  ansible.builtin.file:
     state: directory
     path: "{{ kickstart_dir }}"
 
 - name: create full path to kickstart file
-  set_fact:
+  ansible.builtin.set_fact:
     kickstart_path: "{{ kickstart_dir }}/{{ kickstart_file }}"
 
 - name: save inventory content into variable
-  set_fact:
+  ansible.builtin.set_fact:
     __ks_create_inventory: "{{ lookup('ansible.builtin.pipe', __ks_create_cmd) }}"
   when: ks_create_copy_inventory
   vars:
     __ks_create_cmd: "tar czf - -C {{ inventory_dir | dirname }} {{ inventory_dir | basename }} | base64"
 
 - name: create kickstart from template and inventory variables
-  template:
+  ansible.builtin.template:
     dest: "{{ kickstart_path }}"
     src: fedansy-ks.cfg.j2
     validate: 'ksvalidator --version F{{ fedora_release }} %s'
   delegate_to: localhost
 
 - name: output path to created kickstart file
-  debug:
+  ansible.builtin.debug:
     msg: "Take the file '{{ kickstart_path }}' and copy it to a web-server"

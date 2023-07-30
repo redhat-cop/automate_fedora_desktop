@@ -1,7 +1,7 @@
 ---
 # tasks file for system_vagrant
 - name: block installation of vagrant libvirt to avoid mix-up of plug-ins
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/dnf/dnf.conf
     line: 'excludepkgs={{ vagrant_plugins | join(",") }}'
     regexp: '^excludepkgs='
@@ -9,19 +9,19 @@
     state: present
   when: vagrant_block_plugins
 - name: uninstall vagrant-libvirt RPM if plug-in mix-up to be avoided
-  package:
+  ansible.builtin.package:
     name: "{{ vagrant_plugins }}"
     state: absent
   when: vagrant_block_plugins
 - name: install standard vagrant RPM
-  package:
+  ansible.builtin.package:
     name: vagrant
     state: present
 - name: install dependencies for building native plug-ins
-  package:
+  ansible.builtin.package:
     name: "{{ vagrant_plugin_deps | union(vagrant_plugin_own_deps) | unique }}"
     state: present
   when: vagrant_block_plugins
 - name: setup vagrant, libvirt and polkit to allow for password-less usage
-  import_tasks: libvirt_no_passwd.yml
+  ansible.builtin.import_tasks: libvirt_no_passwd.yml
   when: vagrant_libvirt_no_passwd

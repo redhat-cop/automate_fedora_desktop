@@ -1,7 +1,7 @@
 ---
 
 - name: "Move away unnecessary dictionaries"
-  command: mv "{{ item }}" "{{ item }}~"
+  ansible.builtin.command: mv "{{ item }}" "{{ item }}~"
   args:
     removes: "{{ item }}"
     creates: "{{ item }}~"
@@ -9,7 +9,7 @@
   when: not (item | regex_search(locale_keep_dicts_langs | join("|")))
 
 - name: "Move back necessary dictionaries"
-  command: mv "{{ item }}" "{{ item | regex_replace('~$','') }}"
+  ansible.builtin.command: mv "{{ item }}" "{{ item | regex_replace('~$','') }}"
   args:
     removes: "{{ item }}"
     creates: "{{ item | regex_replace('~$','') }}"

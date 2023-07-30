@@ -1,7 +1,7 @@
 ---
 # tasks file for system_user
 - name: create user {{ local_username }}
-  user:
+  ansible.builtin.user:
     name: "{{ item.name }}"
     comment: "{{ item.description | default(omit) }}"
     uid: "{{ item.id | default(omit) }}"
@@ -11,7 +11,7 @@
     append: true
   loop: "{{ local_users }}"
 - name: Add polkit rule to allow libvirt usage by {{ local_admin_group }} group
-  template:
+  ansible.builtin.template:
     src: templates/polkit-libvirt.rules.j2
     dest: /etc/polkit-1/rules.d/80-libvirt.rules
     owner: root

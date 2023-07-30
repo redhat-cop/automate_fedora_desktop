@@ -1,11 +1,12 @@
-- name: setup RPM Fusion repository/ies {{ rpmfusion_licenses | join(' and ') }}
+---
+- name: "setup RPM Fusion repository/ies {{ rpmfusion_licenses | join(' and ') }}"
   become: yes
-  dnf:
+  ansible.builtin.dnf:
     disable_gpg_check: yes
     name: "http://download1.rpmfusion.org/{{ item }}/fedora/rpmfusion-{{ item }}-release-{{ fedora_release }}.noarch.rpm"
     state: present
   loop: "{{ rpmfusion_licenses }}"
 - name: install packages from RPM Fusion
-  dnf:
+  ansible.builtin.dnf:
     name: "{{ software_rpmfusion }}"
     state: present

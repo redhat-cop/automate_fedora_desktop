@@ -1,7 +1,7 @@
 ---
 # tasks file for user_config
 - name: adapt the user's config files
-  blockinfile:
+  ansible.builtin.blockinfile:
     backup: false
     block: "{{ item.block }}"
     create: true

@@ -3,16 +3,16 @@
 
 # It's not required as far as I know, but perhaps later useful
 #- name: we assume only one wifi device and we find it out
-#  shell: nmcli device | awk '$2 == "wifi" {print $1}'
+#  ansible.builtin.shell: nmcli device | awk '$2 == "wifi" {print $1}'
 #  register: wlan_device
 #  changed_when: false
 #  check_mode: false
 #- name: use nicer variable name for WLAN device
-#  set_fact:
+#  ansible.builtin.set_fact:
 #    wlan_device_name: "{{ wlan_device.stdout }}"
 #  check_mode: false
 - name: install the ifcfg templates
-  template:
+  ansible.builtin.template:
     src: "ifcfg-WLAN.j2"
     dest: "{{ network_config_dir }}/ifcfg-{{ item.name }}"
     mode: u=rw,go=r
@@ -21,7 +21,7 @@
     label: "{{ item.name }}"
   notify: reload_connections
 - name: install the key templates
-  template:
+  ansible.builtin.template:
     src: "keys-WLAN.j2"
     dest: "{{ network_config_dir }}/keys-{{ item.name }}"
     mode: u=rw,go=
@@ -31,7 +31,7 @@
     label: "{{ item.name }}"
   notify: reload_connections
 - name: create optionally static routes
-  template:
+  ansible.builtin.template:
     src: "route-WLAN.j2"
     dest: "{{ network_config_dir }}/route-{{ item.name }}"
   when: "item.routes is defined"

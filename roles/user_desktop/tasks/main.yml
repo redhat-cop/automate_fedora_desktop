@@ -2,6 +2,6 @@
 # tasks file for user_desktop
 
 - name: include tasks file for User's desktop
-  include_tasks:
+  ansible.builtin.include_tasks:
     file: "desktop_{{ user_desktop_name }}.yml"
   when: user_desktop_name is defined
