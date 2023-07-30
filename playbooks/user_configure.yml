@@ -16,7 +16,8 @@
       ansible.builtin.include_role:
         name: "{{ __user_role_name }}"
       vars:
-        __user_role_name: "{{ item.path | basename }}"
+        __user_role_name: "{{ role_item.path | basename }}"
       loop: "{{ __user_roles.files }}"
       loop_control:
-        label: "{{ item.path | basename }}"
+        label: "{{ role_item.path | basename }}"
+        loop_var: role_item

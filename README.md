@@ -60,10 +60,22 @@ You can kill the playbook but beware that the HTTP server will continue to run a
    Boot the new desktop from the previously created USB stick (how depends on its make), then
     1. Select the first line of the menu (Start Fedora...) with the up/down keys and press 'e' for Edit.
     2. Edit the 'linuxefi' line: `linuxefi inst.stage2=hd:LABEL=Fedora-S-dvd-x86_64-38 inst.ks=http://my.own.web.server:8000/myhost.ks` (basically replace `quiet` with `inst.ks=...`).
-Check [more boot options](https://docs.fedoraproject.org/en-US/fedora/rawhide/install-guide/advanced/Boot_Options/).
+Check [more boot options](https://docs.fedoraproject.org/en-US/fedora/f36/install-guide/advanced/Boot_Options/).
     3. Press Ctrl-x to start
     4. Wait until the laptop is installed and rebooted.
-You can login as local admin and continue with the configuration, SSHD runs and Ansible is installed.
-If defined so, this Git repo is already available in `/var/tmp/automate_fedora_desktop` to continue.
+You can login as local admin, or your own user, and continue with the configuration, SSHD runs and Ansible is installed.
+If defined so, this Git repo is already available in `/var/tmp/fedansy` to continue.
+
+7. You're almost there, you only need to configure your main user or the admin user:
+    1. if not already done during the kickstarted installation, you need to copythe collection and your inventory locally (as in step 1) and prepare the machine (as in step 2).
+    2. for the last step explained here, you'll call directly Ansible as an exercise with `ansible-playbook --inventory /var/tmp/fedansy/inventory.myown.d redhat_cop.automate_fedora_desktop.user_configure --limit $(hostname) --connection local` or shorter `ansible-playbook -i /var/tmp/fedansy/inventory.myown.d redhat_cop.automate_fedora_desktop.user_configure -l $(hostname) -c local.
+
+> **NOTE:** other created users on the same machine can as well configure their environment automatically but they'll need to create their own inventory for the user_* roles.
+
+## Maintenance
+
+Once you've configured your system and your user, you should make sure to keep your inventory safely somewhere, so that you can re-create your desktop if needed.
+
+As your needs evolve, and this collection gets new feature, you can extend and modify the inventory and call again and again the correct playbooks to update accordingly your system:
 
 **To Be Continued**

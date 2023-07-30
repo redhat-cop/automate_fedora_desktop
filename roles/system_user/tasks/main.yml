@@ -8,7 +8,7 @@
     groups: "{{ item.groups | default(omit) }}"
     password: "{{ item.password | default('!') }}"
     state: "{{ item.state | default(omit) }}"
-    append: yes
+    append: true
   loop: "{{ local_users }}"
 - name: Add polkit rule to allow libvirt usage by {{ local_admin_group }} group
   template:
