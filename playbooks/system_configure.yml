@@ -2,7 +2,7 @@
 - name: call all roles necessary to configure the system
   hosts: all
   gather_facts: false
-  become: false
+  become: true
   pre_tasks:
     - name: gather existing roles
       ansible.builtin.find:
@@ -20,3 +20,4 @@
       loop: "{{ __system_roles.files }}"
       loop_control:
         label: "{{ role_item.path | basename }}"
+        loop_var: role_item
