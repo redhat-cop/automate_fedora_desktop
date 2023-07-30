@@ -1,0 +1,10 @@
+---
+# a playbook to maintain Fedora up-to-date
+# call with `-e fedora_target_release=38` to _upgrade_ to the given version
+# else it'll just update the system
+- hosts: all
+  gather_facts: true
+  become: true
+
+  roles:
+    - maintain_uptodate

@@ -78,4 +78,10 @@ Once you've configured your system and your user, you should make sure to keep y
 
 As your needs evolve, and this collection gets new feature, you can extend and modify the inventory and call again and again the correct playbooks to update accordingly your system:
 
-**To Be Continued**
+1. update the system with `ansible-playbook --inventory /var/tmp/fedansy/inventory.myown.d redhat_cop.fedora_desktop.system_update --limit $(hostname) --connection local -K`.
+
+2. re-configure the system with `ansible-playbook --inventory /var/tmp/fedansy/inventory.myown.d redhat_cop.fedora_desktop.system_configure --limit $(hostname) --connection local -K`.
+
+3. re-configure the user with `ansible-playbook --inventory /var/tmp/fedansy/inventory.myown.d redhat_cop.fedora_desktop.user_configure --limit $(hostname) --connection local`.
+
+And with sufficient Ansible knowledge, you can do all this and much more, even remotely and on multiple desktops at once. Learn Ansible and try it!
