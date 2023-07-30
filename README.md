@@ -31,8 +31,8 @@ git clone https://github.com/redhat-cop/automate_fedora_desktop.git
 cd automate_fedora_desktop
 
 # or using ansible-galaxy (once this collection has been released)
-ansible-galaxy collection install redhat_cop.automate_fedora_desktop
-cd ~/.ansible/collections/ansible_collections/redhat_cop/automate_fedora_desktop/
+ansible-galaxy collection install redhat_cop.fedora_desktop
+cd ~/.ansible/collections/ansible_collections/redhat_cop/fedora_desktop/
 ```
 
 2. Call `./scripts/00_control_bootstrap.sh` to install the necessary pre-requisites on the control node.
@@ -68,7 +68,7 @@ If defined so, this Git repo is already available in `/var/tmp/fedansy` to conti
 
 7. You're almost there, you only need to configure your main user or the admin user:
     1. if not already done during the kickstarted installation, you need to copythe collection and your inventory locally (as in step 1) and prepare the machine (as in step 2).
-    2. for the last step explained here, you'll call directly Ansible as an exercise with `ansible-playbook --inventory /var/tmp/fedansy/inventory.myown.d redhat_cop.automate_fedora_desktop.user_configure --limit $(hostname) --connection local` or shorter `ansible-playbook -i /var/tmp/fedansy/inventory.myown.d redhat_cop.automate_fedora_desktop.user_configure -l $(hostname) -c local.
+    2. for the last step explained here, you'll call directly Ansible as an exercise with `ansible-playbook --inventory /var/tmp/fedansy/inventory.myown.d redhat_cop.fedora_desktop.user_configure --limit $(hostname) --connection local` or shorter `ansible-playbook -i /var/tmp/fedansy/inventory.myown.d redhat_cop.fedora_desktop.user_configure -l $(hostname) -c local.
 
 > **NOTE:** other created users on the same machine can as well configure their environment automatically but they'll need to create their own inventory for the user_* roles.
 

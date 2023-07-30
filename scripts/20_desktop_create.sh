@@ -2,7 +2,7 @@
 # Create the desktop using the corresponding playbook
 # The playbook creates a kickstart file and serves it optionally via HTTP
 
-FEDORA_COLLECTION=redhat_cop.automate_fedora_desktop
+FEDORA_COLLECTION=redhat_cop.fedora_desktop
 INVENTORY=$(dirname $(dirname "${0}"))/inventory.myown.d
 VERBOSE=
 SERVE_OPTIONS="--skip-tags kickstart_serve"

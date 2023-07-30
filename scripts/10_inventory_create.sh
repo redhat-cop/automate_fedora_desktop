@@ -1,7 +1,7 @@
 #!/bin/sh
 # Create the inventory with all information necessary for the new desktop
 
-FEDORA_COLLECTION=redhat_cop.automate_fedora_desktop
+FEDORA_COLLECTION=redhat_cop.fedora_desktop
 VERBOSE=
 
 function usage() {

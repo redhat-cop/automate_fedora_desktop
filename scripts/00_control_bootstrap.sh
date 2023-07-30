@@ -4,7 +4,7 @@
 
 # the RPMs we want to install
 RPMS=(ansible-core git pykickstart curl mediawriter)
-FEDORA_COLLECTION=redhat_cop.automate_fedora_desktop
+FEDORA_COLLECTION=redhat_cop.fedora_desktop
 DEVELOPER_MODE=
 INTERACTIVE=
 VERBOSE=
@@ -68,7 +68,7 @@ then
 	then
 		mkdir --parents ${VERBOSE} $(dirname "${COLLECTION_DIR}")
 		SOURCE_DIR=$(dirname $(dirname $(realpath "$0")))
-		ln --symbolic ${VERBOSE} "${SOURCE_DIR}/" "${COLLECTION_DIR}"
+		ln --symbolic --force ${VERBOSE} "${SOURCE_DIR}/" "${COLLECTION_DIR}"
 	else
 		ansible-galaxy collection install --upgrade ${FEDORA_COLLECTION}
 	fi

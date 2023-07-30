@@ -26,7 +26,7 @@ Calling the following playbook with `-i host1,host2,` will create an inventory l
 
     - hosts: all
       roles:
-         - role: redhat_cop.automate_fedora_desktop.inventory_create,
+         - role: redhat_cop.fedora_desktop.inventory_create,
            ansible_host: localhost
 
 License
