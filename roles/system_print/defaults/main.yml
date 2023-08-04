@@ -2,12 +2,12 @@
 # defaults file for system_print
 
 # List of CUPS servers you'd like to take your printers from
-cups_servers: []
+system_print_cups_servers: []
 
 # If you want to install CUPS-PDF, uncomment one of the following definitions
 # of cups_pdf_config, each entry configures an option in
 # /etc/cups/cups-pdf.conf - check there for more information
-## cups_pdf_config: []  # install but don't configure
-## cups_pdf_config:     # install and change certain configurations
+## system_print_cups_pdf_config: []  # install but don't configure
+## system_print_cups_pdf_config:     # install and change certain configurations
 ##   - "Out ${HOME}/Downloads/PDF"
 ##   - "Label 1"  # prefix all document with `job_#-`

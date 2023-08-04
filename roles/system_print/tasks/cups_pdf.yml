@@ -10,5 +10,5 @@
     line: "{{ item }}"
     regexp: "^{{ item | regex_replace(' .*', ' ') }}.*"
     insertafter: "^#{{ item | regex_replace(' .*', ' ') }}.*"
-  loop: "{{ cups_pdf_config }}"
+  loop: "{{ system_print_cups_pdf_config }}"
   become: true
