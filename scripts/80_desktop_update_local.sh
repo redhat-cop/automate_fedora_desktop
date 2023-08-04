@@ -1,6 +1,5 @@
 #!/bin/sh
-# Create the desktop using the corresponding playbook
-# The playbook creates a kickstart file and serves it optionally via HTTP
+# Update the current host
 
 FEDORA_COLLECTION=redhat_cop.fedora_desktop
 INVENTORY=$(dirname $(dirname "${0}"))/inventory.myown.d
@@ -9,11 +8,10 @@ REFRESH=
 
 function usage() {
 	local exit_code=${1:-0}
-	echo "Usage: $0 [-h] <one or more hosts>"
+	echo "Usage: $0 [-h] [-r]"
 	echo "       -h - output usage and exit"
 	echo "       -v - verbose"
 	echo "       -r - refresh the packages cache"
-	echo "       one or more hosts separated by commas, without blanks"
 	exit ${exit_code}
 }
 
