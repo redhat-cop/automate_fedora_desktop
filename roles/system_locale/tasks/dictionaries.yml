@@ -10,7 +10,7 @@
     removes: "{{ item }}"
     creates: "{{ item }}~"
   with_fileglob: "{{ system_locale_dictionaries_globs }}"
-  when: not (item | regex_search(locale_keep_dicts_langs | join("|")))
+  when: not (item | regex_search(system_locale_keep_dicts_langs | join("|")))
 
 - name: dictionaries | move back necessary dictionaries
   ansible.builtin.command:
@@ -22,4 +22,4 @@
     removes: "{{ item }}"
     creates: "{{ item | regex_replace('~$', '') }}"
   with_fileglob: "{{ system_locale_dictionaries_globs_tilde }}"
-  when: item | regex_search(locale_keep_dicts_langs | join("|"))
+  when: item | regex_search(system_locale_keep_dicts_langs | join("|"))
