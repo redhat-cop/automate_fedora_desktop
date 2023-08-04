@@ -22,10 +22,10 @@ The role depends somewhat on the 'kickstart\_create' role, but any directory can
 Example Playbook
 ----------------
 
-    - hosts: all
+    - hosts: fedoras
       roles:
-         - kickstart_create
-         - kickstart_serve
+         - redhat_cop.fedora_desktop.kickstart_create
+         - redhat_cop.fedora_desktop.kickstart_serve
 
 License
 -------
