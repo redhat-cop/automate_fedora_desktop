@@ -2,15 +2,17 @@
 # tasks file for system_software
 - name: install packages required by default tasks
   ansible.builtin.dnf:
-    name: "{{ software_fedora_mandatory }}"
+    name: "{{ system_software_mandatory }}"
     state: present
+  become: true
 - name: install additional Fedora packages
   ansible.builtin.dnf:
-    name: "{{ software_fedora_additional }}"
+    name: "{{ system_software_additional }}"
     state: present
+  become: true
 - name: import tasks to enable and install packages from RPM Fusion
-  ansible.builtin.import_tasks:
+  ansible.builtin.include_tasks:
     file: rpmfusion.yml
   when:
-    - rpmfusion_licenses is defined
-    - software_rpmfusion is defined
+    - system_software_licenses is defined
+    - system_software_rpmfusion is defined

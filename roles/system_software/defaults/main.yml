@@ -2,7 +2,7 @@
 # defaults file for system_software
 
 # list of additional packages which the user might want to have from Fedora
-software_fedora_additional: []
+system_software_additional: []
 # e.g. (remove the square brackets above and uncomment below what you'd like to have)
 ##   - vim-enhanced
 ##   - vim-X11
@@ -15,16 +15,17 @@ software_fedora_additional: []
 ##   - gnome-shell-extension-horizontal-workspaces
 ##   - gnome-shell-extension-topicons-plus
 
-# NOTE: you need to have both rpmfusion_licenses and software_rpmfusion defined
-#       for anything to happen. software_rpmfusion can also be an empty list i.e. []
+# NOTE: you need to have both system_software_licenses and
+#       system_software_rpmfusion defined for anything to happen.
+#       system_software_rpmfusion can also be an empty list i.e. []
 
-# often having RPMFusion is necessary but it's your choice, also which kind of licenses
-# you're ready to accept
-## rpmfusion_licenses:
+# often having RPMFusion is necessary but it's your choice,
+# also which kind of licenses you're ready to accept
+## system_software_licenses:
 ##   - free
 ##   - nonfree
 
 # which software do you want to install from RPMFusion
-## software_rpmfusion:
+## system_software_rpmfusion:
 ##   - exfat-utils  # get support for the exfat file system
 ##   - fuse-exfat  # get support for the exfat file system
