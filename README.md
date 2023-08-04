@@ -84,4 +84,6 @@ As your needs evolve, and this collection gets new feature, you can extend and m
 
 3. re-configure the user with `ansible-playbook --inventory /var/tmp/fedansy/inventory.myown.d redhat_cop.fedora_desktop.user_configure --limit $(hostname) --connection local`.
 
+4. or call a single role with something like `./scripts/90_call_role.sh system_software`.
+
 And with sufficient Ansible knowledge, you can do all this and much more, even remotely and on multiple desktops at once. Learn Ansible and try it!
