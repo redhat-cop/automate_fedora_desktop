@@ -1,0 +1,22 @@
+[connection]
+id={{ item.name }}
+type=wifi
+interface-name={{ __system_wlan_device }}
+
+[wifi]
+mode=infrastructure
+ssid={{ item.name }}
+
+[wifi-security]
+auth-alg=open
+key-mgmt=wpa-psk
+psk={{ item.key }}
+
+[ipv4]
+method=auto
+
+[ipv6]
+addr-gen-mode=default
+method=auto
+
+[proxy]

@@ -1,32 +1,8 @@
 ---
 # tasks file for system_wlan
 
-- name: install the ifcfg templates
-  ansible.builtin.template:
-    src: "ifcfg-WLAN.j2"
-    dest: "{{ network_config_dir }}/ifcfg-{{ item.name }}"
-    mode: "u=rw,go=r"
-  loop: "{{ wlans_list }}"
-  loop_control:
-    label: "{{ item.name }}"
-  notify: reload_connections
-- name: install the key templates
-  ansible.builtin.template:
-    src: "keys-WLAN.j2"
-    dest: "{{ network_config_dir }}/keys-{{ item.name }}"
-    mode: "u=rw,go="
-  when: "'key' in item"
-  loop: "{{ wlans_list }}"
-  loop_control:
-    label: "{{ item.name }}"
-  notify: reload_connections
-- name: create optionally static routes
-  ansible.builtin.template:
-    src: "route-WLAN.j2"
-    dest: "{{ network_config_dir }}/route-{{ item.name }}"
-    mode: "u=rw,go=r"
-  when: "item.routes is defined"
-  loop: "{{ wlans_list }}"
-  loop_control:
-    label: "{{ item.name }}"
-  notify: reload_connections
+- name: include correct WLAN method
+  ansible.builtin.include_tasks:
+    file: "{{ system_wlan_method }}.yml"
+  vars:
+    __system_wlan_config_dir: "{{ system_wlan_config_dir[system_wlan_method] }}"

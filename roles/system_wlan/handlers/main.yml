@@ -5,3 +5,4 @@
     cmd: nmcli connection reload
   listen: reload_connections
   changed_when: false  # doesn't really change anything
+  become: true

@@ -1,4 +1,6 @@
 ---
 # vars file for system_wlan
 # where are the network configuration scripts and keys placed
-network_config_dir: /etc/sysconfig/network-scripts
+system_wlan_config_dir:
+  ifcfg: /etc/sysconfig/network-scripts
+  nm: /etc/NetworkManager/system-connections

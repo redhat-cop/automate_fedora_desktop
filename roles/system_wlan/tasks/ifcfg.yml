@@ -1,0 +1,23 @@
+---
+# tasks file for system_wlan
+- name: ifcfg | install the ifcfg templates
+  ansible.builtin.template:
+    src: "ifcfg-WLAN.j2"
+    dest: "{{ __system_wlan_config_dir }}/ifcfg-{{ item.name }}"
+    mode: "u=rw,go=r"
+  loop: "{{ system_wlans_list }}"
+  loop_control:
+    label: "{{ item.name }}"
+  notify: reload_connections
+  become: true
+- name: ifcfg | install the key templates
+  ansible.builtin.template:
+    src: "keys-WLAN.j2"
+    dest: "{{ __system_wlan_config_dir }}/keys-{{ item.name }}"
+    mode: "u=rw,go="
+  when: "'key' in item"
+  loop: "{{ system_wlans_list }}"
+  loop_control:
+    label: "{{ item.name }}"
+  notify: reload_connections
+  become: true

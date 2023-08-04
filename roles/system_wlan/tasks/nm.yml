@@ -1,0 +1,23 @@
+---
+# tasks file for system_wlan
+
+- name: nm | gather information about existing devices
+  ansible.builtin.command:
+    cmd: "nmcli --fields DEVICE,TYPE --terse device status"
+  changed_when: false  # just gathering information
+  register: __system_wlan_devices
+- name: nm | set the correct wlan device assuming exactly one
+  ansible.builtin.set_fact:
+    __system_wlan_device: >-
+      {{ __system_wlan_devices.stdout_lines | select('search', ':wifi$')
+      | first | ansible.builtin.regex_replace(':wifi$', '') }}
+- name: nm | install the NetworkManager templates
+  ansible.builtin.template:
+    src: "nmconnection-WLAN.j2"
+    dest: "{{ __system_wlan_config_dir }}/{{ item.name }}.nmconnection"
+    mode: "u=rw,go="
+  loop: "{{ system_wlans_list }}"
+  loop_control:
+    label: "{{ item.name }}"
+  notify: reload_connections
+  become: true

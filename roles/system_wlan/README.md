@@ -1,12 +1,13 @@
 system\_wlan
 ===========
 
-A brief description of the role goes here.
+Configure your Wifi/WLAN using this role.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+You need to have one and only one Wifi device in your desktop/laptop.
+The role supports only the most simple wps-psk, usual at home.
 
 Role Variables
 --------------
@@ -16,16 +17,15 @@ cf. [defaults/main.yml](defaults/main.yml) for all details.
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+None.
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
+    - hosts: fedoras
       roles:
-         - { role: username.rolename, x: 42 }
+         - { role: redhat_cop.fedora_desktop.system_wlan,
+             system_wlans_list: { name: MySSID, key: mysecretkey } }
 
 License
 -------
