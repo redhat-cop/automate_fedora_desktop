@@ -6,6 +6,7 @@
   ansible.builtin.rpm_key:
     key: "{{ software_vscode_rpm_key }}"
     state: "{{ software_vscode_state }}"
+  become: true
 
 - name: make vscode repository {{ software_vscode_state }}
   ansible.builtin.yum_repository:
@@ -16,8 +17,10 @@
     gpgcheck: true
     gpgkey: "{{ software_vscode_rpm_key }}"
     state: "{{ software_vscode_state }}"
+  become: true
 
 - name: make vscode package {{ software_vscode_state }}
   ansible.builtin.package:
     name: code
     state: "{{ software_vscode_state }}"
+  become: true
