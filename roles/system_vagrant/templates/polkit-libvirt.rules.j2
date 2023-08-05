@@ -1,5 +1,5 @@
 polkit.addRule(function(action, subject) {
-  if (action.id == "org.libvirt.unix.manage" && subject.local && subject.active && subject.isInGroup("{{ vagrant_libvirt_group }}")) {
+  if (action.id == "org.libvirt.unix.manage" && subject.local && subject.active && subject.isInGroup("{{ system_vagrant_libvirt_group }}")) {
       return polkit.Result.YES;
   }
 });

@@ -1,18 +1,18 @@
 ---
 # defaults file for system_vagrant
+
 # vagrant-libvirt gets installed by default when vagrant is installed
 # as RPM, but this leads to issues if you try to install other plug-ins
 # directly using vagrant plugin (which you need to do if you need e.g.
 # Windows boxes). Set to false if you don't plan to use other
 # plug-ins than the ones packaged as RPMs in Fedora.
-vagrant_block_plugins: true
+## system_vagrant_block_plugins: true
 
 # You might have special requirements for locally compiling Vagrant plug-ins
-vagrant_plugin_own_deps:
+system_vagrant_plugin_own_deps:
   - libvirt-devel
 
 # You might want users to use Vagrant with Libvirt without typing a password
-vagrant_libvirt_no_passwd: false
 # In this case, add such users to the below group
-# (the role won't do it for you)
-vagrant_libvirt_group: vagrant
+# (the role won't do it for you, use the role system_user for this)
+## system_vagrant_libvirt_group: "vagrant"

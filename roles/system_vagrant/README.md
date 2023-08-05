@@ -1,12 +1,13 @@
 system\_vagrant
 ==============
 
-A brief description of the role goes here.
+Configures vagrant on Fedora so that custom plugins can be installed, and optionally non-root can use it without password entry.
+Experience shows that you shouldn't mix packaged and non-packaged Vagrant plugins, hence you need to remove all packaged ones, and install them as user with `vagrant plugin install`.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+None.
 
 Role Variables
 --------------
@@ -16,16 +17,15 @@ cf. [defaults/main.yml](defaults/main.yml) for all details.
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+None.
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
     - hosts: fedoras
       roles:
          - role: redhat_cop.fedora_desktop.system_vagrant
+           system_vagrant_block_plugins: true
 
 License
 -------

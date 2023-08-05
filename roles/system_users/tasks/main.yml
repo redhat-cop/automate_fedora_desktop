@@ -1,0 +1,28 @@
+---
+# tasks file for system_users
+- name: create all users according to list
+  ansible.builtin.user:
+    name: "{{ item.name }}"
+    uid: "{{ item.uid | default(omit) }}"
+    comment: "{{ item.comment | default(omit) }}"
+    password: "{{ item.password | default('!') }}"
+    state: "{{ item.state | default('present') }}"
+    home: >-
+      {{ system_users_home_basedir is defined
+      | ternary(__system_users_home_dir, omit) }}
+    move_home: "{{ system_users_move_home }}"
+    groups: "{{ item.groups | default(omit) }}"
+  loop: "{{ system_users_list }}"
+  vars:
+    # Note that this variable isn't used if system_users_home_basedir isn't
+    # defined, hence it can be broken in such cases.
+    __system_users_home_dir: >-
+      {{ system_users_home_basedir | default(':') + '/' + item.name }}
+  become: true
+
+- name: add given authorized keys to user
+  ansible.posix.authorized_key:
+    user: "{{ item.name }}"
+    key: "{{ item.public_key }}"
+  loop: "{{ system_users_list | selectattr('public_key', 'defined') }}"
+  become: true

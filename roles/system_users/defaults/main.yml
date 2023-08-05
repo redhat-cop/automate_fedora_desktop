@@ -1,0 +1,22 @@
+---
+# defaults file for system_users
+# Comment the variable if you don't want the user to be created locally
+# uid, description, groups, state and password are optional
+system_users_list: []
+##   - name: "john"
+##     uid: 1234
+##     comment: "Local User"
+##     groups: wheel
+##     password: <encrypted with mkpasswd & co>
+# see https://docs.ansible.com/ansible/latest/reference_appendices/faq.html#how-do-i-generate-encrypted-passwords-for-the-user-module
+##     public_key: "ssh-ed25519 ABCDEFGHIJKLMNOP john@ansible"
+##   - name: "jim"
+##     uid: 1235
+##     description: "Removed Local User"
+##     state: absent
+
+# base directory for user homes, set only if you want something none standard
+## system_users_home_basedir: /home
+
+# move home directories if they already exist?
+system_users_move_home: false
