@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # a helper script to call an individual role on the default inventory
 
 FEDORA_COLLECTION=redhat_cop.fedora_desktop
@@ -48,7 +48,10 @@ fi
 # call the role(s) from the command line
 for role in "$@"
 do
-	sudo -v  # to be sure to have an actual token
+	if [[ ${role} != user_* ]]
+	then  # the role might need root access
+		sudo -v  # to be sure to have an actual token
+	fi
 	ansible --inventory "${INVENTORY}" ${VERBOSE} ${VAULT} \
 		-m include_role -a name=${FEDORA_COLLECTION}.${role} \
 		--connection local "$(hostname)"
