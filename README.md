@@ -1,4 +1,4 @@
-# Ansible Collection - redhat\_cop.automate\_fedora\_desktop
+# Ansible Collection - redhat\_cop.fedora\_desktop
 
 ## Introduction
 
