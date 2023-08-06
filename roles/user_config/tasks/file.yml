@@ -1,6 +1,6 @@
 ---
 - name: file | generate full path to file
-  set_fact:
+  ansible.builtin.set_fact:
     __user_config_file: "~/{{ config_item.name }}"
 - name: file | create a potential directory
   ansible.builtin.file:
