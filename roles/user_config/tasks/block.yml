@@ -1,0 +1,13 @@
+---
+- name: block | adapt the user's config file
+  ansible.builtin.blockinfile:
+    backup: false
+    block: "{{ config_item.block }}"
+    create: true
+    insertafter: EOF
+    path: "{{ __user_config_file }}"
+    marker: "{{ config_item.marker | default(omit) }}"
+    state: present
+    validate: "{{ config_item.validate | default(omit) }}"
+    mode: "{{ config_item.mode | default('0600') }}"
+  when: "'block' in config_item"

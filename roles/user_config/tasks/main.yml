@@ -1,16 +1,9 @@
 ---
 # tasks file for user_config
-- name: adapt the user's config files
-  ansible.builtin.blockinfile:
-    backup: false
-    block: "{{ item.block }}"
-    create: true
-    insertafter: EOF
-    path: "~/.{{ item.name }}"
-    marker: "{{ item.marker | default(omit) }}"
-    state: present
-    validate: "{{ item.validate | default(omit) }}"
-    mode: "0640"
+- name: loop over the files list
+  ansible.builtin.include_tasks:
+    file: file.yml
   loop: "{{ user_config_files }}"
   loop_control:
-    label: "{{ item.name }}"
+    loop_var: config_item
+    label: "{{ config_item.name }}"
