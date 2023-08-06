@@ -86,7 +86,7 @@ As your needs evolve, and this collection gets new feature, you can extend and m
 
 4. or call a single role with something like `./scripts/90_call_role.sh system_software`.
 
-And with sufficient Ansible knowledge, you can do all this and much more, even remotely and on multiple desktops at once. Learn Ansible and try it!
+And with sufficient Ansible knowledge, you can do all this and much more, even remotely and on multiple desktops at once. [Learn Ansible](https://www.ansible.com/resources/get-started) and try it!
 
 ## Contribute
 
