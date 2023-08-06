@@ -1,0 +1,5 @@
+---
+# defaults file for system_software_vscode
+
+# make vscode present or absent, or ignored if empty string
+system_sw_vscode_state: "{{ sw_vscode_state | default('') }}"
