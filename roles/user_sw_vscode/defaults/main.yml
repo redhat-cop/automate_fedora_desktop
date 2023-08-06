@@ -1,0 +1,10 @@
+---
+# defaults file for user_sw_vscode
+
+# make vscode present or absent, or ignored if empty string
+user_sw_vscode_state: "{{ sw_vscode_state | default('') }}"
+
+# list of vscode extensions to install for the given user
+user_sw_vscode_extensions: []
+##   - redhat.ansible
+##   - vscodevim.vim

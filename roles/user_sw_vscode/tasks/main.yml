@@ -1,8 +1,9 @@
 ---
-# tasks file for user_software_vscode
+# tasks file for user_sw_vscode
 # https://computingforgeeks.com/install-visual-studio-code-on-fedora/
 
 - name: include extension handling task file
   ansible.builtin.include_tasks:
     file: extension.yml
-  loop: "{{ software_vscode_extensions }}"
+  loop: "{{ user_sw_vscode_extensions }}"
+  when: user_sw_vscode_state != ''

@@ -8,5 +8,8 @@
 - a few additional rules apply:
    - `system_...` roles configure the whole system and need root rights
    - `user_...` roles configure an individual user's environment and do _not_ need root rights
-   - roles do _nothing_ by default unless duely configured in the inventory.
+   - `system_sw_...` and `user_sw_...` are reserved for the installation resp. configuration of software not packaged in Fedora.
+It would be better to package them, but redistribution isn't always possible and a role is often more quickly written.
+They both comply to the system/user rules.
+   - roles do _nothing_ by default unless duly configured in the inventory.
    - tasks needing root rights are explicitly using `become: true` (i.e. using `-b` resp. `--become` is _not_ necessary).

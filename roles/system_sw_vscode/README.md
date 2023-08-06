@@ -1,12 +1,12 @@
-user\_software\_vscode
-====================
+system\_sw\_vscode
+======================
 
-A brief description of the role goes here.
+Setup the repository and install Microsoft VisualStudio Code on Fedora.
 
 Requirements
 ------------
 
-Microsoft VS Code has been installed previously, e.g. with the `system_software_vscode` role from the same collection.
+None.
 
 Role Variables
 --------------
@@ -26,12 +26,12 @@ You could install VS Code as root, and add extensions to it as normal user:
     - hosts: fedoras
       become: true
       roles:
-        - role: redhat_cop.fedora_desktop.system_software_vscode
+        - role: redhat_cop.fedora_desktop.system_sw_vscode
     - hosts: fedoras
       become: false
       roles:
-        - role: redhat_cop.fedora_desktop.user_software_vscode
-          software_vscode_extensions:
+        - role: redhat_cop.fedora_desktop.user_sw_vscode
+          user_sw_vscode_extensions:
             - redhat.ansible
             - vscodevim.vim
 

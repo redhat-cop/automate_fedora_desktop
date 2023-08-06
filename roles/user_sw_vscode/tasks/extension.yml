@@ -1,0 +1,21 @@
+---
+# tasks file for user_sw_vscode
+# https://computingforgeeks.com/install-visual-studio-code-on-fedora/
+
+- name: extension | make sure plugin {{ __user_sw_vscode_plugin_state }}
+  ansible.builtin.command:
+    cmd: >
+      code
+      {% if user_sw_vscode_state == 'present' %}--install-extension
+      {% elif user_sw_vscode_state == 'absent' %}--uninstall-extension
+      {% endif %}
+      {{ item }}
+  register: __user_sw_vscode_ext
+  changed_when:
+    - "'is already installed' not in __user_sw_vscode_ext.stdout"
+    - "'is not installed' not in __user_sw_vscode_ext.stderr"
+  failed_when:
+    - __user_sw_vscode_ext.rc != 0
+    - "'is not installed' not in __user_sw_vscode_ext.stderr"
+  vars:
+    __user_sw_vscode_plugin_state: "{{ item }} is {{ user_sw_vscode_state }}"
