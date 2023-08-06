@@ -8,9 +8,9 @@
 # Enter the list of Gnome Shell Extensions you're interested in.
 # CAUTION: they must have been installed previously! (e.g. using system_software)
 # If you don't want any, add an empty list '[]' after the name or uncomment:
-# gnome_shell_extensions: []
+# user_desktop_gnome_shell_extensions: []
 # and comment the following:
-gnome_shell_extensions:
+user_desktop_gnome_shell_extensions:
   - "background-logo@fedorahosted.org"
   # I suspect the user-theme one to be unstable
   ## - "user-theme@gnome-shell-extensions.gcampax.github.com"
@@ -31,7 +31,7 @@ gnome_shell_extensions:
 # make sure that the values are always _strings_ (i.e. always in quotes)
 # or conversion errors will quite surely happen
 
-## xfce_configs:
+## user_desktop_xfce_configs:
 ##   - chan: xfce4-power-manager
 ##     prop: /xfce4-power-manager/lid-action-on-battery  # also lid-action-on-ac
 ##     value: "1"
@@ -39,6 +39,3 @@ gnome_shell_extensions:
 ##   - chan: xfce4-power-manager
 ##     prop: /xfce4-power-manager/logind-handle-lid-switch
 ##     value: "true"  # true with action == 1, else false
-##   - chan: xfce4-power-manager
-##     prop: /xfce4-power-manager/handle-brightness-keys
-##     value: "true"
