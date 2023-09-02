@@ -1,0 +1,21 @@
+---
+# defaults file for system_sw_freeplane
+
+# state of the Freeplane software: none (do nothing), present or absent
+system_sw_freeplane_state: "{{ sw_freeplane_state | default('none') }}"
+
+# define this value if you want the role to take care of installing Java
+# take care that it will also remove it if defined in state absent
+## system_sw_freeplane_java: java-openjdk
+
+# install Freeplane system wide (for all users)
+system_sw_freeplane_system_wide: true
+
+# where to install Freeplane under share/bin
+# note that `user_sw_freeplane_base_dir` will be used instead if installation
+# is _not_ system wide (see `system_sw_freeplane_system_wide`)
+system_sw_freeplane_base_dir: /usr/local
+
+# the version of Freeplane to download
+# TODO find a way to download "latest"
+system_sw_freeplane_version: "{{ sw_freeplane_version | default('1.11.6') }}"
