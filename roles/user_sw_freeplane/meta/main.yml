@@ -1,0 +1,17 @@
+galaxy_info:
+  author: Eric Lavarde
+  description: Install Freeplane mind-mapping tool for a specific user
+  company: Red Hat
+
+  license: MIT
+
+  min_ansible_version: "2.13"
+
+  platforms:
+    - name: Fedora
+      versions:
+        - all
+
+  galaxy_tags: [freeplane, mindmap]
+
+dependencies: []

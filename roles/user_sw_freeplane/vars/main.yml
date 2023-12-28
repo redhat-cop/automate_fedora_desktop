@@ -1,0 +1,3 @@
+---
+# vars file for user_sw_freeplane
+user_sw_freeplane_url: "https://downloads.sourceforge.net/project/freeplane/freeplane%20stable/freeplane_bin-{{ user_sw_freeplane_version }}.zip"
