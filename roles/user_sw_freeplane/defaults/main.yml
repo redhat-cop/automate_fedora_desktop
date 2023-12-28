@@ -1,0 +1,12 @@
+---
+# defaults file for user_sw_freeplane
+
+# state of the Freeplane software: none (do nothing), present or absent
+user_sw_freeplane_state: "{{ sw_freeplane_state | default('none') }}"
+
+# the version of Freeplane to download
+# TODO find a way to download "latest"
+user_sw_freeplane_version: "{{ sw_freeplane_version | default('1.11.6') }}"
+
+# where to install Freeplane under share/bin
+user_sw_freeplane_base_dir: "~/.local"
