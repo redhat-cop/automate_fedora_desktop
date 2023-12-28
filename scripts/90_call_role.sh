@@ -54,5 +54,5 @@ do
 	fi
 	ansible --inventory "${INVENTORY}" ${VERBOSE} ${VAULT} \
 		-m include_role -a name=${FEDORA_COLLECTION}.${role} \
-		--connection local "$(hostname)"
+		--connection local "$(hostnamectl hostname)"
 done
