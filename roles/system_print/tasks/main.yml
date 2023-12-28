@@ -30,5 +30,6 @@
 - name: import task file to install and configure cups-pdf
   ansible.builtin.include_tasks:
     file: cups_pdf.yml
-  become: true
+    apply:
+      become: true
   when: system_print_cups_pdf_config is defined
