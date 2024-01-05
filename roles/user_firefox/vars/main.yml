@@ -1,0 +1,4 @@
+---
+# vars file for user_firefox
+user_firefox_base_dir: "~/.mozilla/firefox"
+user_firefox_profiles_ini: "{{ user_firefox_base_dir }}/profiles.ini"

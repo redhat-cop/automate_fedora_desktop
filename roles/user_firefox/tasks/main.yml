@@ -1,0 +1,18 @@
+---
+# tasks file for user_firefox
+#- name: read Firefox ini file
+#  debug:
+#    msg: "{{ lookup('ansible.builtin.ini', 'Path', file=user_firefox_profiles_ini, section='Profile' + item|string, allow_no_value=True) }}"
+#  loop: "{{ range(2) }}"
+- name: read Firefox ini file
+  community.general.ini_file:
+    path: "{{ user_firefox_profiles_ini }}"
+    section: "Profile{{ item|string }}"
+    option: "Path"
+    value: "xxxx"
+  loop: "{{ range(2) }}"
+  check_mode: true
+  register: __user_firefix_profiles_ini
+- name: output firefox profiles.ini results
+  debug:
+    var: __user_firefix_profiles_ini
