@@ -1,2 +1,3 @@
 ---
 # defaults file for user_firefox
+user_firefox_profiles: 'all'
