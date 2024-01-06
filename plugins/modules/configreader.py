@@ -39,21 +39,15 @@ author:
 '''
 
 EXAMPLES = r'''
-# Pass in a message
-- name: Test with a message
-  my_namespace.my_collection.my_test:
-    name: hello world
+# Read and use the content of an INI file
+- name: read and save in variable content of given INI file
+  redhat_cop.fedora_desktop.configreader:
+    path: ~/.mozilla/firefox/profiles.ini
+  register: __firefox_profiles
 
-# pass in a message and have changed true
-- name: Test with a message and changed output
-  my_namespace.my_collection.my_test:
-    name: hello world
-    new: true
-
-# fail the module
-- name: Test failure of the module
-  my_namespace.my_collection.my_test:
-    name: fail me
+- name: output content of Firefox INI file
+  debug:
+    var: __firefox_profiles.content
 '''
 
 RETURN = r'''
@@ -63,6 +57,11 @@ path:
     type: str
     returned: always
     sample: '/home/jsmith/.config/myconf.ini'
+exists:
+    description: tells if the INI file exists or not
+    type: bool
+    returned: always
+    sample: True
 content:
     description: The content of the ini file as dictionary
     type: dict
@@ -82,38 +81,35 @@ def run_module():
         fail_if_missing=dict(type='bool', required=False, default=True),
     )
 
-    # seed the result dict in the object
-    # we primarily care about changed and state
-    # changed is if this module effectively modified the target
-    # state will include any data that you want your module to pass back
-    # for consumption, for example, in a subsequent task
-    result = dict(
-        changed=False,
-        path='',
-        content={},
-    )
-
-    # the AnsibleModule object will be our abstraction working with Ansible
-    # this includes instantiation, a couple of common attr would be the
-    # args/params passed to the execution, as well as if the module
-    # supports check mode
+    # create an AnsibleModule object
     module = AnsibleModule(
         argument_spec=module_args,
         supports_check_mode=True
     )
 
-    # manipulate or modify the state as needed (this is going to be the
-    # part where your module will do what it needs to do)
-    result['path'] = os.path.abspath(module.params['path'])
+    # prepare the result with sensible values
+    result = dict(
+        changed=False,
+        path='',
+        content={},
+        exists=True,
+    )
+
+    # get the canonical and absolute form of the path and check existence
+    result['path'] = os.path.realpath(os.path.abspath(
+        os.path.expanduser(module.params['path'])
+    ))
     if not os.path.exists(result['path']):
+        result['exists'] = False
         if module.params['fail_if_missing']:
             module.fail_json(
                 msg="INI file '{}' doesn't exist".format(result['path']),
                 **result,
             )
-        else:  # we can't do no more
+        else:  # we can't do no more, we return an empty dict as content
             module.exit_json(**result)
 
+    # if the file exists, try to read it. If not possible, just fail
     config = configparser.ConfigParser()
     try:
         config.read(result['path'])
@@ -127,11 +123,11 @@ def run_module():
         )
 
     # we read the config file content as dict of dicts
+    # note that we ignore hence any DEFAULT section
     for section in config.sections():
         result['content'][section] = dict(config[section])
 
-    # in the event of a successful module execution, you will want to
-    # simple AnsibleModule.exit_json(), passing the key/value results
+    # return finally the result
     module.exit_json(**result)
 
 
