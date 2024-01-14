@@ -1,0 +1,11 @@
+---
+- name: profile | construct user.js variable
+  ansible.builtin.set_fact:
+    user_firefox_js: >-
+      {{ (profile_item.value.isrelative == "1") |
+      ternary(
+        (user_firefox_profiles_ini | dirname, profile_item.value.path, 'user.js') | path_join,
+        profile_item.value.path) }}
+- name: profile | include tasks according to mode
+  ansible.builtin.include_tasks:
+    file: "{{ user_firefox_mode }}.yml"
