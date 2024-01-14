@@ -1,0 +1,11 @@
+---
+- name: lineinfile | add lines to javascript file
+  ansible.builtin.lineinfile:
+    dest: "{{ user_firefox_js }}"
+    # it is a trick to output JavaScript (which is where JSON comes from)
+    line: 'user_pref("{{ item.key }}", {{ item.value | default(omit) | ansible.builtin.to_json }});'
+    regex: 'user_pref\("{{ item.key }}", .*\);'
+    state: "{{ item.state | default(omit) }}"
+    mode: "0640"
+    create: true
+  loop: "{{ user_firefox_user_prefs }}"

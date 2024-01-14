@@ -1,0 +1,5 @@
+{% for line in user_firefox_user_prefs %}
+{% if line.state | default('present') == 'present' %}
+user_pref("{{ line.key }}", {{ line.value | ansible.builtin.to_json }});
+{% endif %}
+{% endfor %}
