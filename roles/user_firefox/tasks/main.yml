@@ -1,9 +1,5 @@
 ---
 # tasks file for user_firefox
-#- name: read Firefox ini file
-#  debug:
-#    msg: "{{ lookup('ansible.builtin.ini', 'Path', file=user_firefox_profiles_ini, section='Profile' + profile_item|string, allow_no_value=True) }}"
-#  loop: "{{ range(2) }}"
 - name: read Firefox ini file
   redhat_cop.fedora_desktop.configreader:
     path: "{{ user_firefox_profiles_ini }}"
@@ -18,4 +14,7 @@
   when:
     - profile_item.key is ansible.builtin.match('Profile[0-9][0-9]*')
     - profile_item.value['name'] is defined
-    - user_firefox_profiles == 'all' or (user_firefox_profiles == 'default' and 'default' in profile_item.value and profile_item.value['default'] == '1') or (profile_item.value['name'] == user_firefox_profiles)
+    - >
+      user_firefox_profiles == 'all'
+      or (user_firefox_profiles == 'default' and 'default' in profile_item.value and profile_item.value['default'] == '1')
+      or (profile_item.value['name'] == user_firefox_profiles)
