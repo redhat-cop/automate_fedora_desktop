@@ -16,8 +16,8 @@ selinux --enforcing
 
 # Use 'text' install (also 'cmdline' would be possible)
 text
-# Run the Setup Agent on first boot (--disable, also --reconfig to reconfigure everything)
-firstboot --enable
+# Run the Setup Agent on first boot or not
+firstboot --{{ kickstart_create_firstboot }}
 
 url --url="{{ fedora_download_url }}"
 

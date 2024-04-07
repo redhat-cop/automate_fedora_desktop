@@ -18,6 +18,10 @@ fedora_release: 38
 # adapt the following URL to take one near to you:
 fedora_download_url: "https://ftp-stud.hs-esslingen.de/pub/fedora/linux/releases/{{ fedora_release }}/Everything/x86_64/os/"
 
+# Run the Setup Agent on first boot
+# (enable/disable, but also reconfig to reconfigure everything)
+kickstart_create_firstboot: enable
+
 ### LOCALE PARAMETERS ###
 # we don't define defaults so that the generation fails if you don't make a choice
 
