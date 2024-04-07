@@ -4,7 +4,8 @@
 # "all" or "default" or the name of the profile
 user_firefox_profiles: "all"
 
-# either "lineinfile" or "exclusive"
+# either "lineinfile" or "exclusive" if you want to keep existing config lines
+# or not
 user_firefox_mode: "lineinfile"
 
 # list of settings as a dictionary with key, value and state (present/absent)
