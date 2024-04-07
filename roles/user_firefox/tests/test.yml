@@ -1,0 +1,6 @@
+---
+- name: test user_firefox role
+  hosts: localhost
+  remote_user: root
+  roles:
+    - user_firefox
