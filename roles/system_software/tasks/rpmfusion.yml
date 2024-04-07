@@ -10,4 +10,5 @@
   ansible.builtin.dnf:
     name: "{{ system_software_rpmfusion }}"
     state: present
+    allowerasing: "{{ system_software_erase }}"
   become: true

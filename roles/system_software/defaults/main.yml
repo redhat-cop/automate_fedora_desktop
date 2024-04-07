@@ -29,3 +29,7 @@ system_software_additional: []
 ## system_software_rpmfusion:
 ##   - exfat-utils  # get support for the exfat file system
 ##   - fuse-exfat  # get support for the exfat file system
+
+# Potentially erase installed software when installing new one.
+# Selecting false will lead to errors in the role, if the case happens.
+system_software_erase: true
