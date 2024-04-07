@@ -2,5 +2,8 @@
 .*.swp
 *~
 
+# ISO files
+*.iso
+
 # ignore my own locally created files
 *[._]myown[._]*
