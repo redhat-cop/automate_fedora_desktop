@@ -1,0 +1,27 @@
+---
+# tasks file for system_tuxedo
+- name: absent | facts are gathered if not yet done
+  ansible.builtin.setup:
+    gather_subset:
+      - '!all'
+      - '!min'
+      - 'distribution_version'
+  when:
+    - ansible_distribution_version is not defined  # used in system_tuxedo_rpm_key
+- name: absent | necessary packages are removed
+  ansible.builtin.dnf:
+    name: "{{ system_tuxedo_packages }}"
+    state: absent
+    update_cache: true
+  become: true
+- name: absent | repository key is removed
+  ansible.builtin.rpm_key:
+    key: "{{ system_tuxedo_rpm_key }}"
+    state: absent
+  become: true
+- name: absent | Tuxedo repository is removed
+  ansible.builtin.copy:
+    src: tuxedo.repo
+    dest: /etc/yum.repos.d/tuxedo.repo
+    mode: "0644"
+  become: true

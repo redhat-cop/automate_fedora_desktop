@@ -1,0 +1,9 @@
+---
+# defaults file for system_tuxedo
+
+# State can be either present, absent or none (the default, doing nothing)
+system_tuxedo_state: none
+
+# List of RPM packages to install from the repository
+system_tuxedo_packages:
+  - tuxedo-control-center

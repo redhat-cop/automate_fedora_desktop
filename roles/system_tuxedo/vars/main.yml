@@ -1,0 +1,3 @@
+---
+# vars file for system_tuxedo
+system_tuxedo_rpm_key: "https://rpm.tuxedocomputers.com/fedora/{{ ansible_distribution_version }}/0x54840598.pub.asc"
