@@ -34,6 +34,7 @@
     owner: "{{ item.name }}"
     group: "{{ item.name }}"
     force: false  # we only create the file once, and don't overwrite it
+    mode: "0644"
   vars:
     __system_users_lang: "{{ item.lang }}"
   loop: "{{ system_users_list | selectattr('lang', 'defined') }}"

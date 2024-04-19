@@ -10,14 +10,14 @@
         depth: 1
         file_type: directory
         pattern: "user_*"
-      register: __user_roles
+      register: __user_configure_roles
   tasks:
     - name: call each user role
       ansible.builtin.include_role:
-        name: "{{ __user_role_name }}"
+        name: "{{ __user_configure_role_name }}"
       vars:
-        __user_role_name: "{{ role_item.path | basename }}"
-      loop: "{{ __user_roles.files }}"
+        __user_configure_role_name: "{{ role_item.path | basename }}"
+      loop: "{{ __user_configure_roles.files }}"
       loop_control:
         label: "{{ role_item.path | basename }}"
         loop_var: role_item

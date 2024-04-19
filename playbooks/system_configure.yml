@@ -10,14 +10,14 @@
         depth: 1
         file_type: directory
         pattern: "system_*"
-      register: __system_roles
+      register: __system_configure_roles
   tasks:
     - name: call each system role
       ansible.builtin.include_role:
-        name: "{{ __system_role_name }}"
+        name: "{{ __system_configure_role_name }}"
       vars:
-        __system_role_name: "{{ role_item.path | basename }}"
-      loop: "{{ __system_roles.files }}"
+        __system_configure_role_name: "{{ role_item.path | basename }}"
+      loop: "{{ __system_configure_roles.files }}"
       loop_control:
         label: "{{ role_item.path | basename }}"
         loop_var: role_item
