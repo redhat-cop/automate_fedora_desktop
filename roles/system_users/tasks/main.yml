@@ -26,3 +26,15 @@
     key: "{{ item.public_key }}"
   loop: "{{ system_users_list | selectattr('public_key', 'defined') }}"
   become: true
+
+- name: create .dmrc with language
+  ansible.builtin.template:
+    src: dmrc.j2
+    dest: "~{{ item.name }}/.dmrc"
+    owner: "{{ item.name }}"
+    group: "{{ item.name }}"
+    force: false  # we only create the file once, and don't overwrite it
+  vars:
+    __system_users_lang: "{{ item.lang }}"
+  loop: "{{ system_users_list | selectattr('lang', 'defined') }}"
+  become: true
