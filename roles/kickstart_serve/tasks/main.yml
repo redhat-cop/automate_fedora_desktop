@@ -1,23 +1,23 @@
 ---
 # tasks file for kickstart_serve
-- name: "open listening port for secs {{ ks_serve_timeout }}"
+- name: "open listening port for secs {{ kickstart_serve_timeout }}"
   ansible.posix.firewalld:
-    port: "{{ ks_serve_listen_port }}/tcp"
+    port: "{{ kickstart_serve_listen_port }}/tcp"
     state: enabled
     # we keep the port open only as long as we need it
     immediate: true
     permanent: false
-    timeout: "{{ ks_serve_timeout }}"
+    timeout: "{{ kickstart_serve_timeout }}"
   become: true
-  when: ks_serve_open_port
-- name: "start minimal HTTP server for secs {{ ks_serve_timeout }}"
+  when: kickstart_serve_open_port
+- name: "start minimal HTTP server for secs {{ kickstart_serve_timeout }}"
   ansible.builtin.command:
     cmd: >
-      timeout {{ ks_serve_timeout }}
+      timeout {{ kickstart_serve_timeout }}
       python -m http.server --directory {{ kickstart_dir }}
-      {% if ks_serve_bind_address is defined %}
-      --bind {{ ks_serve_bind_address }} {% endif %}
-      {% if ks_serve_http_version is defined %}
-      --protocol {{ ks_serve_http_version }} {% endif %}
-      {{ ks_serve_listen_port }}
+      {% if kickstart_serve_bind_address is defined %}
+      --bind {{ kickstart_serve_bind_address }} {% endif %}
+      {% if kickstart_serve_http_version is defined %}
+      --protocol {{ kickstart_serve_http_version }} {% endif %}
+      {{ kickstart_serve_listen_port }}
   changed_when: false  # doesn't change anything after all

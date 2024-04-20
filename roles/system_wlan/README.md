@@ -25,7 +25,7 @@ Example Playbook
     - hosts: fedoras
       roles:
          - { role: redhat_cop.fedora_desktop.system_wlan,
-             system_wlans_list: { name: MySSID, key: mysecretkey } }
+             system_wlan_list: { name: MySSID, key: mysecretkey } }
 
 License
 -------

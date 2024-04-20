@@ -5,7 +5,7 @@
 # fedora_target_release: 38
 #
 # sometimes, some packages create issue when an upgrade is done, remove them before
-fedora_upgrade_critical_packages:
+maintain_uptodate_critical_packages:
   32:
     - system-config-keyboard
     - python3-ansible-tower-cli

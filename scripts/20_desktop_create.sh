@@ -33,7 +33,7 @@ do
 		SERVE_OPTIONS="--ask-become-pass"
 		;;
 	o)
-		OPEN="--extra-vars ks_serve_open_port=true"
+		OPEN="--extra-vars kickstart_serve_open_port=true"
 		echo "You will be asked for your password to become root (sudo)"
 		;;
 	v)

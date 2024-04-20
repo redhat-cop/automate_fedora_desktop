@@ -12,10 +12,10 @@
 
 - name: save inventory content into variable
   ansible.builtin.set_fact:
-    __ks_create_inventory: "{{ lookup('ansible.builtin.pipe', __ks_create_cmd) }}"
-  when: ks_create_copy_inventory
+    __kickstart_create_inventory: "{{ lookup('ansible.builtin.pipe', __kickstart_create_cmd) }}"
+  when: kickstart_create_copy_inventory
   vars:  # the slash-dot avoids issues with symlinked inventories
-    __ks_create_cmd: "tar czf - -C {{ inventory_dir | dirname }} {{ inventory_dir | basename }}/. | base64"
+    __kickstart_create_cmd: "tar czf - -C {{ inventory_dir | dirname }} {{ inventory_dir | basename }}/. | base64"
 
 - name: create kickstart from template and inventory variables
   ansible.builtin.template:

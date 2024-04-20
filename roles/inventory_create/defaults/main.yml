@@ -4,19 +4,19 @@
 # base directory of the inventory of hosts and variables to create
 # by default in the same directory as the 'playbooks' directory,
 # with a name to be ignored by Git.
-inv_create_base_dir: "{{ playbook_dir | dirname }}/inventory.myown.d"
+inventory_create_base_dir: "{{ playbook_dir | dirname }}/inventory.myown.d"
 
 # name of the host to add to the inventory
-inv_create_hostname: "{{ fedora_desktop_hostname | default(inventory_hostname) }}"
+inventory_create_hostname: "{{ fedora_desktop_hostname | default(inventory_hostname) }}"
 
 # directory of the newly created host in the inventory
-inv_create_host_dir: "{{ inv_create_base_dir }}/host_vars/{{ inv_create_hostname }}"
+inventory_create_host_dir: "{{ inventory_create_base_dir }}/host_vars/{{ inventory_create_hostname }}"
 
 # in which inventory group to put the new hosts
-inv_create_default_group: fedoras
+inventory_create_default_group: fedoras
 
 # if an inventory already exists, overwrite existing files with defaults
-inv_create_force: false
+inventory_create_force: false
 
 # if an inventory already exists, create a backup of modified files
-inv_create_backup: true
+inventory_create_backup: true

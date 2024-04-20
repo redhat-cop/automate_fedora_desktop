@@ -20,9 +20,9 @@
         state: present
     - name: remove upgrade critical packages if applicable
       ansible.builtin.dnf:
-        name: "{{ fedora_upgrade_critical_packages[fedora_target_release | int] }}"
+        name: "{{ maintain_uptodate_critical_packages[fedora_target_release | int] }}"
         state: absent
-      when: fedora_target_release | int in fedora_upgrade_critical_packages
+      when: fedora_target_release | int in maintain_uptodate_critical_packages
     - name: download all necessary for Fedora {{ fedora_target_release }}
       ansible.builtin.command:
         cmd: dnf system-upgrade download --releasever={{ fedora_target_release }} --assumeyes

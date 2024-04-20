@@ -16,7 +16,7 @@
     src: "nmconnection-WLAN.j2"
     dest: "{{ __system_wlan_config_dir }}/{{ item.name }}.nmconnection"
     mode: "u=rw,go="
-  loop: "{{ system_wlans_list }}"
+  loop: "{{ system_wlan_list }}"
   loop_control:
     label: "{{ item.name }}"
   notify: reload_connections
