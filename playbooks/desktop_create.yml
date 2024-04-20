@@ -6,11 +6,11 @@
   become: false
 
   tasks:
-    - name: call kickstart_create role
+    - name: Call kickstart_create role
       ansible.builtin.import_role:
         name: kickstart_create
       tags: kickstart_create
-    - name: call kickstart_serve role
+    - name: Call kickstart_serve role
       ansible.builtin.import_role:
         name: kickstart_serve
       tags: kickstart_serve

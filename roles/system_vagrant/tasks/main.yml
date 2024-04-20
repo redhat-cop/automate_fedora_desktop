@@ -1,12 +1,12 @@
 ---
 # tasks file for system_vagrant
 
-- name: install vagrant and block plugins if required
+- name: Install vagrant and block plugins if required
   ansible.builtin.include_tasks:
     file: install.yml
   when: system_vagrant_block_plugins is defined
 
-- name: setup vagrant, libvirt and polkit to allow for password-less usage
+- name: Setup vagrant, libvirt and polkit to allow for password-less usage
   ansible.builtin.include_tasks:
     file: libvirt_no_passwd.yml
   when: system_vagrant_libvirt_group is defined

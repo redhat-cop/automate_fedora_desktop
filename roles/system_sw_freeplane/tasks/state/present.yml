@@ -1,11 +1,11 @@
 ---
-- name: present | install Java for Freeplane when requested
+- name: present | Install Java for Freeplane when requested
   ansible.builtin.package:
     name: "{{ system_sw_freeplane_java }}"
     state: present
   when: system_sw_freeplane_java is defined
   become: true
-- name: present | call user_sw_freeplane role to install Freeplane (system)
+- name: present | Call user_sw_freeplane role to install Freeplane (system)
   ansible.builtin.include_role:
     name: user_sw_freeplane
     apply:
@@ -13,7 +13,7 @@
   vars:
     user_sw_freeplane_base_dir: "{{ system_sw_freeplane_base_dir }}"
   when: system_sw_freeplane_system_wide
-- name: present | call user_sw_freeplane role to install Freeplane (user)
+- name: present | Call user_sw_freeplane role to install Freeplane (user)
   ansible.builtin.include_role:
     name: user_sw_freeplane
   when: not system_sw_freeplane_system_wide

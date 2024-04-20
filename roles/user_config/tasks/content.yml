@@ -1,5 +1,5 @@
 ---
-- name: content | create the user's config file
+- name: content | Create the user's config file
   ansible.builtin.copy:
     backup: false
     content: "{{ config_item.content }}"

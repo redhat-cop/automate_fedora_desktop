@@ -1,10 +1,10 @@
 ---
-- name: cups_pdf | install cups-pdf package
+- name: cups_pdf | Install cups-pdf package
   ansible.builtin.package:
     name: cups-pdf
     state: present
   become: true
-- name: cups_pdf | configure cups-pdf
+- name: cups_pdf | Configure cups-pdf
   ansible.builtin.lineinfile:
     path: /etc/cups/cups-pdf.conf
     line: "{{ item }}"

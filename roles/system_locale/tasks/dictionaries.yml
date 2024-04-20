@@ -1,6 +1,6 @@
 ---
 
-- name: dictionaries | move away unnecessary dictionaries
+- name: dictionaries | Move away unnecessary dictionaries
   ansible.builtin.command:
     argv:
       - mv
@@ -12,7 +12,7 @@
   with_fileglob: "{{ system_locale_dictionaries_globs }}"
   when: not (item | regex_search(system_locale_keep_dicts_langs | join("|")))
 
-- name: dictionaries | move back necessary dictionaries
+- name: dictionaries | Move back necessary dictionaries
   ansible.builtin.command:
     argv:
       - mv

@@ -1,10 +1,10 @@
 ---
 # tasks file for user_firefox
-- name: read Firefox ini file
+- name: Read Firefox ini file
   redhat_cop.fedora_desktop.configreader:
     path: "{{ user_firefox_profiles_ini }}"
   register: __user_firefox_profiles
-- name: enumerate actual profiles
+- name: Enumerate actual profiles
   ansible.builtin.include_tasks:
     file: profile.yml
   loop: "{{ __user_firefox_profiles.content | dict2items }}"

@@ -1,5 +1,5 @@
 ---
-- name: block | adapt the user's config file
+- name: block | Adapt the user's config file
   ansible.builtin.blockinfile:
     backup: false
     block: "{{ config_item.block }}"

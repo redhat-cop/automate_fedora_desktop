@@ -1,5 +1,5 @@
 ---
 # tasks file for system_sw_freeplane
-- name: include the right state file
+- name: Include the right state file
   ansible.builtin.include_tasks:
     file: state/{{ system_sw_freeplane_state }}.yml

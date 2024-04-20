@@ -1,17 +1,17 @@
 ---
 # tasks file for inventory_create
-- name: create inventory directories for the host '{{ inventory_create_hostname }}'
+- name: Create inventory directories for the host '{{ inventory_create_hostname }}'
   ansible.builtin.file:
     path: "{{ inventory_create_host_dir }}"
     state: directory
     recurse: true
-- name: gather existing roles
+- name: Gather existing roles
   ansible.builtin.find:
     paths: "{{ playbook_dir | dirname }}/roles"
     depth: 1
     file_type: directory
   register: __inventory_create_roles
-- name: copy each role's defaults/main.yml to the host's vars
+- name: Copy each role's defaults/main.yml to the host's vars
   ansible.builtin.copy:
     src: "{{ __inventory_create_role_defs }}"
     dest: "{{ inventory_create_host_dir }}/{{ __inventory_create_role_name }}.yml"
@@ -24,7 +24,7 @@
   loop: "{{ __inventory_create_roles.files }}"
   loop_control:
     label: "{{ item.path | basename }}"
-- name: create hosts file
+- name: Create hosts file
   ansible.builtin.copy:
     # we use multi-line YAML to be sure to have a newline at the end
     content: |
@@ -34,7 +34,7 @@
     backup: "{{ inventory_create_backup }}"
     mode: "0640"
   run_once: true
-- name: add host to hosts file
+- name: Add host to hosts file
   ansible.builtin.lineinfile:
     create: true
     # either the variable of the host or the host's inventory name

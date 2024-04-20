@@ -1,6 +1,6 @@
 ---
 # tasks file for system_users
-- name: create all users according to list
+- name: Create all users according to list
   ansible.builtin.user:
     name: "{{ item.name }}"
     uid: "{{ item.uid | default(omit) }}"
@@ -20,14 +20,14 @@
       {{ system_users_home_basedir | default(':') + '/' + item.name }}
   become: true
 
-- name: add given authorized keys to user
+- name: Add given authorized keys to user
   ansible.posix.authorized_key:
     user: "{{ item.name }}"
     key: "{{ item.public_key }}"
   loop: "{{ system_users_list | selectattr('public_key', 'defined') }}"
   become: true
 
-- name: create .dmrc with language
+- name: Create .dmrc with language
   ansible.builtin.template:
     src: dmrc.j2
     dest: "~{{ item.name }}/.dmrc"

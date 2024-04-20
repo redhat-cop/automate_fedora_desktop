@@ -1,14 +1,14 @@
 ---
-- name: desktop_xfce_xfconf | create variable from channel and property
+- name: desktop_xfce_xfconf | Create variable from channel and property
   ansible.builtin.set_fact:
     __user_desktop_xfce_conf: "{{ xfce_conf.chan }}/{{ xfce_conf.prop }}"
-- name: desktop_xfce_xfconf | check the current value of {{ __user_desktop_xfce_conf }}
+- name: desktop_xfce_xfconf | Check the current value of {{ __user_desktop_xfce_conf }}
   ansible.builtin.command:
     cmd: xfconf-query --channel {{ xfce_conf.chan }} --property {{ xfce_conf.prop }}
   register: xfconf_query
   changed_when: false
   check_mode: false
-- name: desktop_xfce_xfconf | set {{ __user_desktop_xfce_conf }}
+- name: desktop_xfce_xfconf | Set {{ __user_desktop_xfce_conf }}
   ansible.builtin.command:
     cmd: >
       xfconf-query --channel {{ xfce_conf.chan }}

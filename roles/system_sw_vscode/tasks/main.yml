@@ -2,14 +2,14 @@
 # tasks file for system_sw_vscode
 # https://computingforgeeks.com/install-visual-studio-code-on-fedora/
 
-- name: make GPG key from Microsoft {{ system_sw_vscode_state }}
+- name: Make GPG key from Microsoft {{ system_sw_vscode_state }}
   ansible.builtin.rpm_key:
     key: "{{ system_sw_vscode_rpm_key }}"
     state: "{{ system_sw_vscode_state }}"
   become: true
   when: system_sw_vscode_state != ""
 
-- name: make vscode repository {{ system_sw_vscode_state }}
+- name: Make vscode repository {{ system_sw_vscode_state }}
   ansible.builtin.yum_repository:
     name: vscode
     description: Visual Studio Code
@@ -21,7 +21,7 @@
   become: true
   when: system_sw_vscode_state != ""
 
-- name: make vscode package {{ system_sw_vscode_state }}
+- name: Make vscode package {{ system_sw_vscode_state }}
   ansible.builtin.package:
     name: code
     state: "{{ system_sw_vscode_state }}"

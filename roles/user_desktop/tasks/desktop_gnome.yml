@@ -1,7 +1,7 @@
 ---
 # tasks file for user_desktop
 
-- name: desktop_gnome | activate the Gnome Shell extensions
+- name: desktop_gnome | Activate the Gnome Shell extensions
   ansible.builtin.command:
     cmd: gnome-shell-extension-tool -e "{{ item }}"
   loop: "{{ user_desktop_gnome_shell_extensions }}"

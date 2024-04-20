@@ -1,11 +1,11 @@
 ---
-- name: absent | uninstall Java for Freeplane when requested
+- name: absent | Uninstall Java for Freeplane when requested
   ansible.builtin.package:
     name: "{{ system_sw_freeplane_java }}"
     state: absent
   when: system_sw_freeplane_java is defined
   become: true
-- name: absent | call user_sw_freeplane role to uninstall Freeplane (system)
+- name: absent | Call user_sw_freeplane role to uninstall Freeplane (system)
   ansible.builtin.include_role:
     name: user_sw_freeplane
     apply:
@@ -13,7 +13,7 @@
   vars:
     user_sw_freeplane_base_dir: "{{ system_sw_freeplane_base_dir }}"
   when: system_sw_freeplane_system_wide
-- name: absent | call user_sw_freeplane role to uninstall Freeplane (user)
+- name: absent | Call user_sw_freeplane role to uninstall Freeplane (user)
   ansible.builtin.include_role:
     name: user_sw_freeplane
   when: not system_sw_freeplane_system_wide

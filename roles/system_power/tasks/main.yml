@@ -1,19 +1,19 @@
 ---
 # tasks file for system_power
 
-- name: install power management software
+- name: Install power management software
   ansible.builtin.package:
     name: "{{ system_power_packages }}"
     state: present
   become: true
-- name: power tune your system and optionally calibrate (screen might flicker)
+- name: Power tune your system and optionally calibrate (screen might flicker)
   ansible.builtin.command:
     cmd: >-
       powertop {% if system_power_calibrate %}--calibrate{% endif %} --auto-tune
   when: system_power_autotune
   changed_when: true  # just keeping ansible-lint happy
   become: true
-- name: enable and start tlp service
+- name: Enable and start tlp service
   ansible.builtin.service:
     name: tlp
     state: started

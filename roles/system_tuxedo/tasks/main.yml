@@ -1,5 +1,5 @@
 ---
 # tasks file for system_tuxedo
-- name: state to be reached {{ system_tuxedo_state }}
+- name: State to be reached {{ system_tuxedo_state }}
   ansible.builtin.include_tasks:
     file: "{{ system_tuxedo_state }}.yml"

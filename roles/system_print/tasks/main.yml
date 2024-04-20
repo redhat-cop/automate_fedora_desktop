@@ -1,13 +1,13 @@
 ---
 # tasks file for system_print
 
-- name: make sure cupsd is installed
+- name: Make sure cupsd is installed
   ansible.builtin.package:
     name: cups
     state: present
   become: true
 
-- name: configure CUPS server(s)
+- name: Configure CUPS server(s)
   ansible.builtin.lineinfile:
     create: true
     dest: "/etc/cups/cups-browsed.conf"
@@ -18,7 +18,7 @@
   notify:
     - restart_cups_browsed
 
-- name: enable and start cups-browsed
+- name: Enable and start cups-browsed
   ansible.builtin.service:
     name: cups-browsed
     enabled: true
@@ -27,7 +27,7 @@
 
 # TODO: enable ipp-client in firewall? (according to cups-browsed.conf)
 
-- name: import task file to install and configure cups-pdf
+- name: Import task file to install and configure cups-pdf
   ansible.builtin.include_tasks:
     file: cups_pdf.yml
     apply:

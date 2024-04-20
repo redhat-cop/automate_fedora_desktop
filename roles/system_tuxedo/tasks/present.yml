@@ -6,7 +6,7 @@
     dest: /etc/yum.repos.d/tuxedo.repo
     mode: "0644"
   become: true
-- name: present | facts are gathered if not yet done
+- name: present | Facts are gathered if not yet done
   ansible.builtin.setup:
     gather_subset:
       - '!all'
@@ -14,12 +14,12 @@
       - 'distribution_version'
   when:
     - ansible_distribution_version is not defined  # used in system_tuxedo_rpm_key
-- name: present | repository key is imported
+- name: present | Repository key is imported
   ansible.builtin.rpm_key:
     key: "{{ system_tuxedo_rpm_key }}"
     state: present
   become: true
-- name: present | necessary packages are installed
+- name: present | Necessary packages are installed
   ansible.builtin.dnf:
     name: "{{ system_tuxedo_packages }}"
     state: present

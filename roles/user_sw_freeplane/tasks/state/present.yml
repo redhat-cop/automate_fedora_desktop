@@ -1,18 +1,18 @@
 ---
 # present tasks file for user_sw_freeplane
-- name: present | make sure the necessary directories exist
+- name: present | Make sure the necessary directories exist
   ansible.builtin.file:
     state: directory
     path: "{{ user_sw_freeplane_base_dir }}/{{ item }}"
     mode: "0755"
   loop: [share, bin]
-- name: present | download and unpack the freeplane binaries
+- name: present | Download and unpack the freeplane binaries
   ansible.builtin.unarchive:
     dest: "{{ user_sw_freeplane_base_dir }}/share"
     src: "{{ user_sw_freeplane_url }}"
     remote_src: true
     creates: "{{ user_sw_freeplane_base_dir }}/share/freeplane-{{ user_sw_freeplane_version }}"
-- name: present | create executable link to freeplane script
+- name: present | Create executable link to freeplane script
   ansible.builtin.file:
     state: link
     dest: "{{ user_sw_freeplane_base_dir }}/bin/freeplane"

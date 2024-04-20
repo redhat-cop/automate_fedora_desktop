@@ -1,13 +1,13 @@
 ---
 
-- name: libvirt_no_passwd | make sure user group exists {{ system_vagrant_libvirt_group }}
+- name: libvirt_no_passwd | Make sure user group exists {{ system_vagrant_libvirt_group }}
   ansible.builtin.group:
     name: "{{ system_vagrant_libvirt_group }}"
     state: present
     system: true
   become: true
 
-- name: libvirt_no_passwd | add polkit rule to allow libvirt usage by group
+- name: libvirt_no_passwd | Add polkit rule to allow libvirt usage by group
   ansible.builtin.template:
     src: templates/polkit-libvirt.rules.j2
     dest: /etc/polkit-1/rules.d/80-vagrant-libvirt.rules

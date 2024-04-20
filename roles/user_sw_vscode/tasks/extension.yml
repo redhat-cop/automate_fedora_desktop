@@ -2,7 +2,7 @@
 # tasks file for user_sw_vscode
 # https://computingforgeeks.com/install-visual-studio-code-on-fedora/
 
-- name: extension | make sure plugin {{ __user_sw_vscode_plugin_state }}
+- name: extension | Make sure plugin {{ __user_sw_vscode_plugin_state }}
   ansible.builtin.command:
     cmd: >
       code

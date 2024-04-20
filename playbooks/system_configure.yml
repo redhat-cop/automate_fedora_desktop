@@ -4,7 +4,7 @@
   gather_facts: false
   become: true
   pre_tasks:
-    - name: gather existing roles
+    - name: Gather existing roles
       ansible.builtin.find:
         paths: "{{ playbook_dir | dirname }}/roles"
         depth: 1
@@ -12,7 +12,7 @@
         pattern: "system_*"
       register: __system_configure_roles
   tasks:
-    - name: call each system role
+    - name: Call each system role
       ansible.builtin.include_role:
         name: "{{ __system_configure_role_name }}"
       vars:

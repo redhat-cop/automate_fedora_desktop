@@ -1,12 +1,12 @@
 ---
 # tasks file for system_locale
-- name: "gather current X11 Keymap"
+- name: Gather current X11 Keymap
   ansible.builtin.command:
     cmd: localectl status
   register: __system_locale_before
   changed_when: false
 
-- name: "setup X11 Keymap Locale"
+- name: Setup X11 Keymap Locale
   ansible.builtin.command:
     cmd: >
       localectl set-x11-keymap
@@ -15,14 +15,14 @@
   when: system_locale_keymap is defined
   changed_when: false
 
-- name: "verify if new X11 Keymap changed"
+- name: Verify if new X11 Keymap changed
   ansible.builtin.command:
     cmd: localectl status
   register: __system_locale_after
   changed_when: __system_locale_after.stdout != __system_locale_before.stdout
   when: system_locale_keymap is defined
 
-- name: import dictionaries tasks
+- name: Import dictionaries tasks
   ansible.builtin.include_tasks:
     file: dictionaries.yml
   when: system_locale_keep_dicts_langs is defined

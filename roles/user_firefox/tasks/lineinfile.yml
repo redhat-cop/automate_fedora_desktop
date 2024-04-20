@@ -1,5 +1,5 @@
 ---
-- name: lineinfile | add lines to javascript file
+- name: lineinfile | Add lines to javascript file
   ansible.builtin.lineinfile:
     dest: "{{ user_firefox_js }}"
     # it is a trick to output JavaScript (which is where JSON comes from)

@@ -1,6 +1,6 @@
 ---
 # tasks file for system_vagrant
-- name: install | block install of vagrant libvirt to avoid mix-up of plug-ins
+- name: install | Block install of vagrant libvirt to avoid mix-up of plug-ins
   ansible.builtin.lineinfile:
     path: /etc/dnf/dnf.conf
     line: 'excludepkgs={{ system_vagrant_plugins | join(",") }}'
@@ -9,18 +9,18 @@
     state: present
   when: system_vagrant_block_plugins
   become: true
-- name: install | uninstall vagrant-libvirt RPM if plug-in mix-up to be avoided
+- name: install | Uninstall vagrant-libvirt RPM if plug-in mix-up to be avoided
   ansible.builtin.package:
     name: "{{ system_vagrant_plugins }}"
     state: absent
   when: system_vagrant_block_plugins
   become: true
-- name: install | install standard vagrant RPM
+- name: install | Install standard vagrant RPM
   ansible.builtin.package:
     name: vagrant
     state: present
   become: true
-- name: install | install dependencies for building native plug-ins
+- name: install | Install dependencies for building native plug-ins
   ansible.builtin.package:
     name: >-
       {{ system_vagrant_plugin_deps

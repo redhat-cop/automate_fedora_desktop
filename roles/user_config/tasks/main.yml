@@ -1,6 +1,6 @@
 ---
 # tasks file for user_config
-- name: loop over the files list
+- name: Loop over the files list
   ansible.builtin.include_tasks:
     file: file.yml
   loop: "{{ user_config_files }}"

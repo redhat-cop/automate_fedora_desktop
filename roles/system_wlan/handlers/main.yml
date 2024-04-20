@@ -1,6 +1,6 @@
 ---
 # handlers file for system_wlan
-- name: reload all connection files from disk
+- name: Reload all connection files from disk
   ansible.builtin.command:
     cmd: nmcli connection reload
   listen: reload_connections

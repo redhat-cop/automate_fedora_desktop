@@ -1,7 +1,7 @@
 ---
 # tasks file for system_wlan
 
-- name: include correct WLAN method
+- name: Include correct WLAN method
   ansible.builtin.include_tasks:
     file: "{{ system_wlan_method }}.yml"
   vars:

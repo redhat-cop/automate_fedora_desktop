@@ -1,5 +1,5 @@
 ---
-- name: exclusive | create javascript file from template
+- name: exclusive | Create javascript file from template
   ansible.builtin.template:
     dest: "{{ user_firefox_js }}"
     src: "js.j2"

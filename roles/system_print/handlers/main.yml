@@ -1,6 +1,6 @@
 ---
 # handlers file for system_print
-- name: restart cups-browsed
+- name: Restart cups-browsed
   ansible.builtin.service:
     name: cups-browsed
     state: restarted

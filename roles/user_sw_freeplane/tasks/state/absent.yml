@@ -1,10 +1,10 @@
 ---
 # tasks file for user_sw_freeplane
-- name: absent | remove the freeplane binaries
+- name: absent | Remove the freeplane binaries
   ansible.builtin.file:
     state: absent
     dest: "{{ user_sw_freeplane_base_dir }}/share/freeplane-{{ user_sw_freeplane_version }}"
-- name: absent | remove executable link to freeplane script
+- name: absent | Remove executable link to freeplane script
   ansible.builtin.file:
     state: absent
     dest: "{{ user_sw_freeplane_base_dir }}/bin/freeplane"
