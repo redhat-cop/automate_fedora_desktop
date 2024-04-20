@@ -9,7 +9,7 @@ kickstart_file: "{{ ks_create_hostname }}.ks"
 kickstart_dir: "{{ playbook_dir | dirname }}/ks.myown.d"
 
 # the release of the Fedora to use
-fedora_release: 38
+fedora_release: 39
 
 # The following URL should work but if one of the mirrors is wrong, then
 # the whole procedure might fail, so better take a known good mirror by
