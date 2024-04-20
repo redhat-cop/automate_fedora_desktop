@@ -97,12 +97,12 @@ file_systems:
 
 # Adapt to your favorite desktop environment
 # Some alternative Desktop Environments:
-# Gnome: @^workstation-product-environment
-# XFcE: @^xfce-desktop-environment
-# KDE: @^kde-desktop-environment
-# Cinnamon: @^cinnamon-desktop-environment
+# Gnome: workstation-product-environment
+# XFcE: xfce-desktop-environment
+# KDE: kde-desktop-environment
+# Cinnamon: cinnamon-desktop-environment
 # (get more options with `dnf grouplist -v`
-desktop_environment: '@^workstation-product-environment'
+desktop_environment: 'workstation-product-environment'
 
 ### PREPARE LAPTOP FOR ANSIBLE CONFIGURATION ###
 

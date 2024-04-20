@@ -77,7 +77,7 @@ logvol {{ fs.mount }} --fstype={{ fs.type }} --name={{ fs.name }} --vgname={{ vg
 reboot
 
 %packages
-{{ desktop_environment }}
+@^{{ desktop_environment }}
 chrony
 ansible-core
 ansible-collection-ansible-posix
