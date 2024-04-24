@@ -11,6 +11,8 @@
 # You might have special requirements for locally compiling Vagrant plug-ins
 system_vagrant_plugin_own_deps:
   - libvirt-devel
+  - virt-manager  # probably too much but gets us the libvirt/qemu dependencies
+  - python3-winrm  # for Windows VMs
 
 # You might want users to use Vagrant with Libvirt without typing a password
 # In this case, add such users to the below group
